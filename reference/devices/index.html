@@ -149,7 +149,8 @@ Params:
 <p>Returns the device map.
 Params:
 - entities (mandatory): comma separated of entities ids.
-- geojson (optional): boolean (default = false)</p>
+- geojson (optional): boolean (default = false)
+- geojson_collection (optional): boolean (default = false)</p>
 <p>Response:</p>
 <pre><code class="json">WITHOUT GEOJSON
 [{
@@ -177,6 +178,34 @@ WITH GEOJSON
       &quot;lastdata&quot;: [{&quot;var&quot;:&quot;&lt;id_var&gt;&quot;,&quot;value&quot;:&quot;&quot;}]
     }
   }]
+
+WITH GEOJSON COLLECTION
+{
+  &quot;type&quot;: &quot;FeatureCollection&quot;,
+  &quot;features&quot;: [
+    {
+      &quot;type&quot;: &quot;Feature&quot;,
+      &quot;geometry&quot;: {
+        &quot;type&quot;: &quot;Point&quot;,
+        &quot;coordinates&quot;: [
+          -5.103975,
+          37.233236
+        ]
+      },
+      &quot;properties&quot;: {
+        &quot;device_id&quot;: &quot;vertical.category.variable:8m1&quot;,
+        &quot;timeinstant&quot;: &quot;2016-06-21T07:56:36.618&quot;,
+        &quot;entity_id&quot;: &quot;vertical.category.variable&quot;,
+        &quot;lastdata&quot;: [
+          {
+            &quot;var&quot;: &quot;&lt;id_var&gt;&quot;,
+            &quot;value&quot;:&quot;&quot;
+          }
+        ]
+      }
+    }
+  ]
+}
 </code></pre>
 
 <h3 id="post-scopedevicesmapcounters">POST /:scope/devices/map/counters</h3>
