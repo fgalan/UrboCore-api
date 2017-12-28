@@ -1,0 +1,419 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "URBO API docs.\n\n\nWelcome to Urbo API documentation",
+            "title": "Home"
+        },
+        {
+            "location": "/reference/metadata/",
+            "text": "Metadata\n\n\nGET /metadata\n\n\nReturns the metadata catalog of the application.\n\n\nResponse\n\n\n\n[{\n  \"id\": \"id_category\",\n  \"name\": \"Name category\",\n  \"entities\": [{\n    \"id\": \"<id_entity>\",\n    \"name\" : \"Entity name\",\n    \"id_category\": \"id_category\",\n    \"table\": \"DB Table\",\n    \"variables\" : [\n      {\n        \"id\": \"<id_variable>\",\n        \"id_entity\": \"id_entity\",\n        \"name\": \"<var_name>\",\n        \"units\": \"<var_units>\",\n        \"var_thresholds\": [],\n        \"var_agg\": [\"SUM\",\"MAX\",\"MIN\",\"AVG\"],\n        \"reverse\": false,\n        \"config\": {}\n      }\n    ]\n  }]\n}]",
+            "title": "Metadata"
+        },
+        {
+            "location": "/reference/metadata/#metadata",
+            "text": "",
+            "title": "Metadata"
+        },
+        {
+            "location": "/reference/metadata/#get-metadata",
+            "text": "Returns the metadata catalog of the application.  Response  \n[{\n  \"id\": \"id_category\",\n  \"name\": \"Name category\",\n  \"entities\": [{\n    \"id\": \"<id_entity>\",\n    \"name\" : \"Entity name\",\n    \"id_category\": \"id_category\",\n    \"table\": \"DB Table\",\n    \"variables\" : [\n      {\n        \"id\": \"<id_variable>\",\n        \"id_entity\": \"id_entity\",\n        \"name\": \"<var_name>\",\n        \"units\": \"<var_units>\",\n        \"var_thresholds\": [],\n        \"var_agg\": [\"SUM\",\"MAX\",\"MIN\",\"AVG\"],\n        \"reverse\": false,\n        \"config\": {}\n      }\n    ]\n  }]\n}]",
+            "title": "GET /metadata"
+        },
+        {
+            "location": "/reference/scopes/",
+            "text": "Scopes\n\n\nGET /scopes\n\n\nReturns scopes list.\n\n\nParams:\n- multi (optional): true|false. If missing returns all scopes, multi and non multi.\n\n\nSample response:\n\n\n[\n  {\n    \"id\": \"id_0\",\n    \"name\" : \"Name_0\",\n    \"multi\": false,\n    \"categories\": [\"c0\"]\n  },\n  {\n    \"id\": \"id_1\",\n    \"name\" : \"Name_1\",\n    \"multi\": true,\n    \"categories\": [\"c1\"],\n    \"n_cities\": 2\n  }\n]\n\n\n\n\nGET /scopes/:scope_id\n\n\nSample response non multi scope\n\n\n{\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\":false,\n  \"parent_id\": \"parent\",\n  \"categories\": [\"vertical\"]\n}\n\n\n\n\nSample response multi scope\n\n\n{\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"multi\":true,\n  \"childs\": [{\n    \"id\": \"sub_id_0\",\n    \"name\": \"Sub_name_0\",\n    \"location\": [37.237364, -5.103308],\n    \"zoom\": 15,\n    \"categories\": [\"vertical_0\"]\n  },\n  {\n    \"id\": \"sub_id_1\",\n    \"name\": \"Sub_name_0\",\n    \"location\": [37.237364, -5.103308],\n    \"zoom\": 15,\n    \"categories\": [\"vertical_1\"]\n  }]\n}\n\n\n\n\nGET /scopes/:id_scope/metadata\n\n\nIt returns the scope's metadata\n\n\nResponse\n\n\n[{\n  \"id\": \"id_category\",\n  \"name\": \"Name category\",\n  \"nodata\": false,\n  \"entities\": [{\n    \"id\": \"<id_entity>\",\n    \"name\" : \"Entity name\",\n    \"id_category\": \"id_category\",\n    \"table\": \"DB Table\",\n    \"variables\" : [\n      {\n        \"id\": \"<id_variable>\",\n        \"id_entity\": \"id_entity\",\n        \"name\": \"<var_name>\",\n        \"units\": \"<var_units>\",\n        \"var_thresholds\": [],\n        \"var_agg\": [\"SUM\",\"MAX\",\"MIN\",\"AVG\"],\n        \"reverse\": false,\n        \"column\": \"Table column\",\n        \"config\": {}\n      }\n    ]\n  }]\n}]",
+            "title": "Scopes"
+        },
+        {
+            "location": "/reference/scopes/#scopes",
+            "text": "",
+            "title": "Scopes"
+        },
+        {
+            "location": "/reference/scopes/#get-scopes",
+            "text": "Returns scopes list.  Params:\n- multi (optional): true|false. If missing returns all scopes, multi and non multi.  Sample response:  [\n  {\n    \"id\": \"id_0\",\n    \"name\" : \"Name_0\",\n    \"multi\": false,\n    \"categories\": [\"c0\"]\n  },\n  {\n    \"id\": \"id_1\",\n    \"name\" : \"Name_1\",\n    \"multi\": true,\n    \"categories\": [\"c1\"],\n    \"n_cities\": 2\n  }\n]",
+            "title": "GET /scopes"
+        },
+        {
+            "location": "/reference/scopes/#get-scopesscope_id",
+            "text": "Sample response non multi scope  {\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\":false,\n  \"parent_id\": \"parent\",\n  \"categories\": [\"vertical\"]\n}  Sample response multi scope  {\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"multi\":true,\n  \"childs\": [{\n    \"id\": \"sub_id_0\",\n    \"name\": \"Sub_name_0\",\n    \"location\": [37.237364, -5.103308],\n    \"zoom\": 15,\n    \"categories\": [\"vertical_0\"]\n  },\n  {\n    \"id\": \"sub_id_1\",\n    \"name\": \"Sub_name_0\",\n    \"location\": [37.237364, -5.103308],\n    \"zoom\": 15,\n    \"categories\": [\"vertical_1\"]\n  }]\n}",
+            "title": "GET /scopes/:scope_id"
+        },
+        {
+            "location": "/reference/scopes/#get-scopesid_scopemetadata",
+            "text": "It returns the scope's metadata  Response  [{\n  \"id\": \"id_category\",\n  \"name\": \"Name category\",\n  \"nodata\": false,\n  \"entities\": [{\n    \"id\": \"<id_entity>\",\n    \"name\" : \"Entity name\",\n    \"id_category\": \"id_category\",\n    \"table\": \"DB Table\",\n    \"variables\" : [\n      {\n        \"id\": \"<id_variable>\",\n        \"id_entity\": \"id_entity\",\n        \"name\": \"<var_name>\",\n        \"units\": \"<var_units>\",\n        \"var_thresholds\": [],\n        \"var_agg\": [\"SUM\",\"MAX\",\"MIN\",\"AVG\"],\n        \"reverse\": false,\n        \"column\": \"Table column\",\n        \"config\": {}\n      }\n    ]\n  }]\n}]",
+            "title": "GET /scopes/:id_scope/metadata"
+        },
+        {
+            "location": "/reference/entities/",
+            "text": "Entities\n\n\nGET /:scope/entities/:id/elements\n\n\nIt returns all the elements for a specific entity.\n\n\nResponse:\n\n\n[\n  {\n    \"id\": \"vertical.category.variable:es1\",\n    \"name\" : \"Name\"\n  },\n  {\n    \"id\": \"vertical.category.variable:es2\",\n    \"name\" : \"Name\"\n  }\n]\n\n\n\n\nGET /:scope/entities/search\n\n\nIt does a search inside all map elements (devices map: last data map).\n\n\nParams:\n- entities (mandatory): entities to search. It's a comma separated. string\n- term (mandatory): it contains the search term.\n- limit (optional): number of results. Default is 20.\n\n\nRequest sample\n\n\nGET localhost:3001/scope/entities/search?term=searchterm&entities=vertical.category.variable_0,vertical.category.variable_1,vertical.category.variable_2,vertical.category.variable_3&limit=10\n\n\n\n\nResponse:\n\n\n[{\n  \"type\": \"placement\",\n  \"name\": \"T\u00edtulo emplazamiento 1\",\n  \"element_id\":  \"<placement_id>\",\n  \"bbox\" : [lx,ly,ux,uy]\n},\n{\n  \"type\": \"device\",\n  \"name\": \"T\u00edtulo dispositivo 1\",\n  \"element_id\":  \"<device_id>\",\n  \"bbox\" : [lx,ly,ux,uy]\n}]\n\n\n\n\nGET /:scope/entities/map/counters\n\n\nIt returns the number of elements by entities. If bbox param is specified the 'filter' value is the number of elements inside the viewport.\n\n\nParams:\n- entities (mandatory): comma separated array of id entities.\n- bbox (optional): bbox to filter data.\n\n\nSample request\n\n\nGET /scope/entities/map/counters?entities=vertical.category.variable&bbox=-180,-90,-150,30\n\n\n\n\nResponse:\n\n\n[\n  {\n    \"id\": \"vertical.category.variable\",\n    \"filter\": 0,\n    \"all\": 8515\n  }\n]",
+            "title": "Entities"
+        },
+        {
+            "location": "/reference/entities/#entities",
+            "text": "",
+            "title": "Entities"
+        },
+        {
+            "location": "/reference/entities/#get-scopeentitiesidelements",
+            "text": "It returns all the elements for a specific entity.  Response:  [\n  {\n    \"id\": \"vertical.category.variable:es1\",\n    \"name\" : \"Name\"\n  },\n  {\n    \"id\": \"vertical.category.variable:es2\",\n    \"name\" : \"Name\"\n  }\n]",
+            "title": "GET /:scope/entities/:id/elements"
+        },
+        {
+            "location": "/reference/entities/#get-scopeentitiessearch",
+            "text": "It does a search inside all map elements (devices map: last data map).  Params:\n- entities (mandatory): entities to search. It's a comma separated. string\n- term (mandatory): it contains the search term.\n- limit (optional): number of results. Default is 20.  Request sample  GET localhost:3001/scope/entities/search?term=searchterm&entities=vertical.category.variable_0,vertical.category.variable_1,vertical.category.variable_2,vertical.category.variable_3&limit=10  Response:  [{\n  \"type\": \"placement\",\n  \"name\": \"T\u00edtulo emplazamiento 1\",\n  \"element_id\":  \"<placement_id>\",\n  \"bbox\" : [lx,ly,ux,uy]\n},\n{\n  \"type\": \"device\",\n  \"name\": \"T\u00edtulo dispositivo 1\",\n  \"element_id\":  \"<device_id>\",\n  \"bbox\" : [lx,ly,ux,uy]\n}]",
+            "title": "GET /:scope/entities/search"
+        },
+        {
+            "location": "/reference/entities/#get-scopeentitiesmapcounters",
+            "text": "It returns the number of elements by entities. If bbox param is specified the 'filter' value is the number of elements inside the viewport.  Params:\n- entities (mandatory): comma separated array of id entities.\n- bbox (optional): bbox to filter data.  Sample request  GET /scope/entities/map/counters?entities=vertical.category.variable&bbox=-180,-90,-150,30  Response:  [\n  {\n    \"id\": \"vertical.category.variable\",\n    \"filter\": 0,\n    \"all\": 8515\n  }\n]",
+            "title": "GET /:scope/entities/map/counters"
+        },
+        {
+            "location": "/reference/variables/",
+            "text": "Variables\n\n\nGET /:scope/variables/:id\n\n\n:id is the variable id.\n\n\nIt returns an aggregate value of a variable\n\n\nParams:\n\n\n\n\nagg: (mandatory): aggregation function. It must be max, min, avg or sum. It can be an array.\n\n\nstart (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nfinish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nbbox (optional) : [lx,ly,ux,uy]\n\n\n\n\nResponse 1:\n\n\n{\n  value: 1\n}\n\n\n\n\nResponse 2:\n\n\n{\n  \"value\": {\n    \"avg\": 24.599189759944835,\n    \"sum\": 2853875,\n  }\n}\n\n\n\n\nPOST /:scope/variables/:id/now\n\n\n:id is the variable id.\n\n\nIt returns an aggregate value of a variable for the current situation.\n\n\nPayload 1:\n\n\n{\n  \"agg\": \"SUM\",\n  \"filters\": {\n    \"bbox\": [lx,ly,ux,uy],\n    \"condition\": {\"OR\": {\"column1__in\": [], {\"AND\": {\"column2__gte\": 10, \"column2__lte\": 30}}}}\n  }\n}\n\n\n\n\nResponse 1:\n\n\n{\n  \"value\": 51\n}\n\n\n\n\nPayload 2:\n\n\n{\n  \"agg\": [\"avg\", \"sum\"],\n  \"filters\": {\n    \"bbox\": [lx,ly,ux,uy],\n    \"condition\": {\"OR\": {\"column1__in\": [], {\"AND\": {\"column2__gte\": 10, \"column2__lte\": 30}}}}\n  }\n}\n\n\n\n\nResponse 2:\n\n\n{\n  \"value\": {\n    \"avg\": 24.599189759944835,\n    \"sum\": 2853875,\n  }\n}\n\n\n\n\nPOST /:scope/variables/:id/historic\n\n\n:id is the variable id.\n\n\nIt returns an aggregate value of a variable.\n\n\nPayload 1:\n\n\n{\n  \"agg\": SUM,\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\"\n  },\n  \"filters\": {\n    \"bbox\": [lx,ly,ux,uy],\n    \"condition\": {\"OR\": {\"column1__in\": [], {\"AND\": {\"column2__gte\": 10, \"column2__lte\": 30}}}}\n  }\n}\n\n\n\n\nResponse 1:\n\n\n{\n  \"value\": 19\n}\n\n\n\n\nPayload 2:\n\n\n{\n  \"agg\": [\"avg\", \"sum\"],\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\"\n  },\n  \"filters\": {\n    \"bbox\": [lx,ly,ux,uy],\n    \"condition\": {\"OR\": {\"column1__in\": [], {\"AND\": {\"column2__gte\": 10, \"column2__lte\": 30}}}}\n  }\n}\n\n\n\n\nResponse 2:\n\n\n{\n  \"value\": {\n    \"avg\": 24.599189759944835,\n    \"sum\": 2853875,\n  }\n}\n\n\n\n\nPOST /:scope/variables/timeserie\n\n\nIt returns a time serie of a variable (or a set of variables).\n\n\n\n\nagg: (mandatory): array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.\n\n\nvars (mandatory): array of all variables ids.\n\n\nstart (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nfinish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nstep (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)\n\n\nbbox (optional) : [lx,ly,ux,uy]\n\n\nfindTimes  : true |\u00a0false. Default to false. If set to true and max or min aggregator are used, it returns the list of \"TimeInstant\" where the max or min appears.\n\n\n\n\nPayload:\n\n\n{\n  \"agg\": [\"SUM\",\"AVG\",\"AVG\",\"MIN\"],\n  \"vars\": [\"varible_id_1\",\"varible_id_2\",\"varible_id_3\",\"varible_id_3\"],\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"step\": \"1d\"\n  },\n  \"findTimes\" : true,\n  \"filters\": {\n    \"bbox\": [-5.11170,37.24000,-5.10818,37.24303]\n  }\n}\n\n\n\n\nResponse:\n\n\n[{\n    \"time\": \"YYYY-MM-DD HH:MM\",\n    \"data\": {\n      \"<varible_id_1>\": 218,\n      \"<varible_id_2>\": 104,\n      \"<varible_id_3>\": [\n          {\n            \"agg\": \"AVG\",\n            \"value\": 34.2\n          },\n          {\n            \"agg\": \"MIN\",\n            \"value\": 0.56,\n            \"times\" : [\"YYYY-MM-DDTHH:MM:SSZ\",\"YYYY-MM-DDTHH:MM:SSZ\",\"YYYY-MM-DDTHH:MM:SSZ\"]\n          }\n        ]\n    }\n}]\n\n\n\n\nSample request\n\n\nPOST /osuna/variables/timeserie\n\n\n\n\nPOST /:scope/variables/:id_variable/devices_group_timeserie\n\n\nIt returns a time serie of a variable grouped by devices.\nIf requested (at groupagg), it also provides the aggregation of all devices.\n\n\nPayload:\n\n\n{\n  \"agg\": \"AVG\",\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"step\": \"1d\"\n  },\n  \"filters\": {\n    \"bbox\": [-5.11170,37.24000,-5.10818,37.24303]\n  }\n}\n\n\n\n\n\n\nagg: aggregation function.\n\n\nstart (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nfinish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\ngroupagg(optional): true|false. Default to false. Show a line for each time which represents the aggregation of all devices.\n\n\nstep (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)\n\n\nbbox (optional) : [lx,ly,ux,uy]\n\n\n\n\nResponse:\n\n\n[{\n    \"time\": \"YYYY-MM-DD HH:MM\",\n    \"data\": {\n      \"<device_id_1>\": \"value\",\n      \"<device_id_2>\": \"value\",\n      \"avg\" : \"value\"\n    }\n}]\n\n\n\n\nGET /:scope/variables/timeserie\n\n\nIt returns a time serie of a variable (or a set of variables).\n\n\nParams:\n\n\n\n\nagg: (mandatory): separated comma array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.\n\n\nvars (mandatory): separated comma array of all variables ids.\n\n\nstart (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nfinish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nstep (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)\n\n\nbbox (optional) : [lx,ly,ux,uy]\n\n\n\n\nResponse:\n\n\n[{\n    \"time\": \"YYYY-MM-DD HH:MM\",\n    \"data\": {\n      \"<varible_id_1>\": 218,\n      \"<varible_id_2>\": 104,\n      \"<varible_id_3>\": [\n          {\n            \"agg\": \"AVG\",\n            \"value\": 34.2\n          },\n          {\n            \"agg\": \"MIN\",\n            \"value\": 0.56\n          }\n        ]\n    }\n}]\n\n\n\n\nSample request\n\n\nGET /osuna/variables/timeserie?start=2016-09-05T00:00&finish=2016-09-12T00:00&step=4h&vars=wt_soilhumidity,wt_soilhumidity,wm_waterconsumption,mt_pluvio,wm_battery,wt_battery&agg=AVG,MIN,AVG,SUM,SUM,AVG\n\n\n\n\nGET /:scope/variables/:id_variable/devices_group_timeserie\n\n\nIt returns a time serie of a variable grouped by devices.\nIf requested (at groupagg), it also provides the aggregation of all devices.\n\n\nParams:\n\n\n\n\nid_variable (mandatory): variable id.\n\n\nagg: aggregation function.\n\n\nstart (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nfinish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\ngroupagg(optional): true|false. Default to false. Show a line for each time which represents the aggregation of all devices.\n\n\nstep (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)\n\n\nbbox (optional) : [lx,ly,ux,uy]\n\n\n\n\nResponse:\n\n\n[{\n    \"time\": \"YYYY-MM-DD HH:MM\",\n    \"data\": {\n      \"<device_id_1>\": \"value\",\n      \"<device_id_2>\": \"value\",\n      \"avg\" : \"value\"\n    }\n}]\n\n\n\n\nPOST /:scope/variables/:id/histogram/continuous/now\n\n\n@TODO\n\n\nPayload:\n\n\n{\n  totals: true,\n  ranges: [\n    { '>=':0, '<':80},\n    { '>=':80, '<=': 90 },\n    { '>': 90 }\n  ],\n  filters: {..}\n}\n\n\n\n\nResponse (totals: true):\n\n\n[{\n  total: 10,\n  value: 5\n },\n {\n   total: 20,\n   value: 15\n },\n {\n   total: 30,\n   value: 20\n }]\n\n\n\n\nResponse (totals: false):\n\n\n[{\n  value: 5\n },\n {\n   value: 15\n },\n {\n   value: 20\n }]\n\n\n\n\nPOST /:scope/variables/:id/histogram/discrete/now\n\n\n@TODO\n\n\nPayload: Auto-guessing categories\n\n\n{\n  ranges: 'all'\n  filters: {..}\n}\n\n\n\n\nPayload:Fixed categories\n\n\n{\n  ranges: ['cat1','cat2','cat3'],\n  filters: {..}\n}\n\n\n\n\nResponse:\n\n\n[{\n    category: 'cat1',\n    value: 10,\n    total: 15\n},\n{\n    category: 'cat2',\n    value: 20,\n    total: 25\n},\n{\n    category: 'cat3',\n    value: 30,\n    total: 35\n}]\n\n\n\n\nPOST /:scope/variables/:id/histogram/timeserie/continuous\n\n\nPayload:\n\n\n{\n  time: {\n    start: 'YYYY-MM-DDTHH:MM:SSZ',\n    finish: 'YYYY-MM-DDTHH:MM:SSZ',\n    step: '<in seconds>'\n  },\n  totals: false,\n  ranges: [\n    { '>=':0, '<':80},\n    { '>=':80, '<=': 90 },\n    { '>': 90 }\n  ],\n  filters: {..},\n  time_column: 'day'  // Optional, default: 'TimeInstant'\n}\n\n\n\n\nResponse:\n\n\n[\n  {\n    \"time\": \"2016-09-07T15:00:00.000Z\",\n    \"data\": [\n      {\n        \"value\": 0,\n        \"total\": 0\n      },\n      {\n        \"value\": 0,\n        \"total\": 0\n      },\n      {\n        \"value\": \"8\",\n        \"total\": \"8\"\n      }\n    ]\n  }\n]\n\n\n\n\nGET /:scope/variables/:id/outers\n\n\n:id is the variable id.\n\n\nIt returns the outers of an aggregation. It's used to build dynamic choropleth legends.\n\n\nParams:\n\n\n\n\nagg (mandatory): aggregation function. It must be max, min, avg or sum.\n\n\nstart (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nfinish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\n\n\nResponse:\n\n\n{\n  min: 10\n  max: 100\n}\n\n\n\n\nPOST /:scope/variables/dailyagg\n\n\nIt returns the dailyagg\n\n\n\n\nagg: (mandatory): array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.\n\n\nvars (mandatory): array of all variables ids.\n\n\nstart (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nfinish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nstep (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)\n\n\nbbox (optional) : [lx,ly,ux,uy]\n\n\nfindTimes  : true |\u00a0false. Default to false. If set to true and max or min aggregator are used, it returns the list of \"TimeInstant\" where the max or min appears.\n\n\n\n\nPayload:\n\n\n{\n  \"agg\": [\"SUM\",\"MAX\",\"AVG\",\"MIN\"],\n  \"vars\": [\"varible_id_1\",\"varible_id_2\",\"varible_id_3\",\"varible_id_3\"],\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"step\": \"1d\"\n  },\n  \"findTimes\" : true,\n  \"filters\": {\n    \"bbox\": [-5.11170,37.24000,-5.10818,37.24303]\n  }\n}\n\n\n\n\nResponse:\n\n\n[{\n    \"time\": \"<seconds from 00:00 UTC>\",\n    \"data\": {\n      \"<varible_id_1>\": 33,\n      \"<varible_id_2>\": {\n        \"value\" : 35,\n        \"times\" : [\"YYYY-MM-DD\",\"YYYY-MM-DD\",\"YYYY-MM-DD\"]\n      },\n      \"<varible_id_3>\": [\n          {\n            \"agg\": \"AVG\",\n            \"value\": 34.2\n          },\n          {\n            \"agg\": \"MIN\",\n            \"value\": 0.56,\n            \"times\" : [\"YYYY-MM-DDTHH:MM:SSZ\",\"YYYY-MM-DDTHH:MM:SSZ\",\"YYYY-MM-DDTHH:MM:SSZ\"]\n          }\n        ]\n    }\n}]\n\n\n\n\nPOST /:scope/variables/ranking/now\n\n\nIt returns the current values of the requested variables ranked by a variable.\n\n\n\n\nvars: (mandatory): array of all variables ids.\n\n\nvar_order (mandatory): variable id for ordering.\n\n\norder (optional): 'asc' or 'desc', default 'desc'.\n\n\nlimit (optional): an intenger for limiting the query result, default without limit.\n\n\nbbox (optional): [lx,ly,ux,uy]\n\n\n\n\nPayload:\n\n\n{\n  \"vars\": [\n    \"parking.offstreet.name\",\n    \"parking.offstreet.availablespotnumber\",\n    \"parking.offstreet.category\"\n  ],\n  \"var_order\": \"parking.offstreet.availablespotnumber\",\n  \"order\": \"desc\",\n  \"limit\": 5,\n  \"filters\": {\n    \"bbox\": [lx, ly, ux, uy]\n  }\n}\n\n\n\n\nResponse:\n\n\n[\n  {\n    \"availablespotnumber\": 266,\n    \"category\": [\n      \"public\"\n    ],\n    \"name\": \"Pol\u00edgono Industrial Alcobendas - Parking 03\"\n  },\n  {\n    \"availablespotnumber\": 218,\n    \"category\": [\n      \"forCustomers\"\n    ],\n    \"name\": \"Las Tablas - Parking 03\"\n  },\n  {\n    \"availablespotnumber\": 166,\n    \"category\": [\n      \"forCustomers\"\n    ],\n    \"name\": \"Las Tablas - Parking 01\"\n  },\n  {\n    \"availablespotnumber\": 122,\n    \"category\": [\n      \"forCustomers\"\n    ],\n    \"name\": \"Las Tablas - Parking 02\"\n  },\n  {\n    \"availablespotnumber\": 116,\n    \"category\": [\n      \"public\"\n    ],\n    \"name\": \"Parque Empresarial Moraleja - Parking 02\"\n  }\n]\n\n\n\n\nPOST /:scope/variables/:id/weekserie\n\n\nPayload:\n\n\n{\n  \"agg\": \"AVG\",\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\"\n  },\n  \"filters\": {\n    \"bbox\": [lx, ly, ux, uy]\n  }\n}\n\n\n\n\nResponse:\n\n\n[\n  {\n    \"day\": \"Monday\",\n    \"data\": [<data at 00:00UTC>, ..., <data at 23:00UTC>]\n  },\n  {\n    \"day\": \"Tuesday\",\n    \"data\": [<data at 00:00UTC>, ..., <data at 23:00UTC>]\n  },\n  {\n    \"day\": \"Wednesday\",\n    \"data\": [<data at 00:00UTC>, ..., <data at 23:00UTC>]\n  }\n]\n\n\n\n\nPOST /:scope/variables/:id/histogram/discrete/grouped\n\n\nIt counts the rows of a table grouped by a column.\n\n\nPayload 1:\n\n\n{\n  \"time\": {\n    \"start\": \"2000-01-01T00:00:00Z\",\n    \"finish\": \"2999-01-01T00:00:00Z\"\n  },\n  \"filters\": {\n    \"bbox\": [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],\n    \"order\": \"asc\",  // Optional, default DESC\n    \"limit\": 10,  // Optional, default without limit\n    \"perc\": false,  // Optional, default false\n    \"condition\": {\n      \"AND\": {\n        \"user_country__in\": [\"Croatia\"],\n        \"week_day__in\": [\"5\", \"6\", \"7\"]\n      }\n    }\n  }\n}\n\n\n\n\nResponse 1:\n\n\n[\n  {\n    \"category\": \"Split-Dalmatia\",\n    \"total\": 4\n  },\n  {\n    \"category\": \"Zagreb\",\n    \"total\": 2\n  }\n]\n\n\n\n\nPayload 2:\n\n\n{\n  \"time\": {\n    \"start\": \"2000-01-01T00:00:00Z\",\n    \"finish\": \"2999-01-01T00:00:00Z\"\n  },\n  \"filters\": {\n    \"bbox\": [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],\n    \"order\": \"desc\",  // Optional, default DESC\n    \"limit\": 2,  // Optional, default without limit\n    \"perc\": true,  // Optional, default false\n    \"condition\": {\n      \"AND\": {\n        \"user_country__in\": [\"Spain\"],\n        \"week_day__in\": [\"5\", \"6\", \"7\"]\n      }\n    }\n  }\n}\n\n\n\n\nResponse 2:\n\n\n[\n  {\n    \"category\": \"Madrid\",\n    \"total\": 80.3197908286404\n  },\n  {\n    \"category\": \"Granada\",\n    \"total\": 19.680209171359614\n  }\n]\n\n\n\n\nPOST /:scope/variables/:id/unique\n\n\nIt returns the unique values of a variable. Also, you can filter it by another column with the \nfilters\n key in the payload.\n\n\nPayload:\n\n\n{\n  \"time\": {\n    \"start\": \"2000-01-01T00:00:00Z\",\n    \"finish\": \"2999-01-01T00:00:00Z\"\n  },\n  \"filters\": {\n    \"bbox\": [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],\n    \"condition\": {\n      \"AND\": {\n        \"user_country__in\": [\"Croatia\"],\n        \"week_day__in\": [\"5\", \"6\", \"7\"]\n      }\n    }\n  }\n}\n\n\n\n\nResponse:\n\n\n[\n  {\n    \"value\": \"Split-Dalmatia\"\n  },\n  {\n    \"value\": \"Zagreb\"\n  }\n]\n\n\n\n\nPOST /:scope/variables/:id/bounding_box\n\n\nIt returns the returns bounding box of a variable. Also, you can filter it by another column with the \nfilters\n key in the payload.\n\n\nPayload:\n\n\n{\n  \"time\": {\n    \"start\": \"2000-01-01T00:00:00Z\",\n    \"finish\": \"2999-01-01T00:00:00Z\"\n  },\n  \"filters\": {\n    \"condition\": {\n      \"AND\": {\n        \"user_country__in\": [\"Spain\"],\n        \"week_day__in\": [\"5\", \"6\", \"7\"]\n      }\n    }\n  }\n}\n\n\n\n\nResponse:\n\n\n{\n  \"value\": [\n    -16.26,\n    28.463,\n    12.402,\n    47.86\n  ]\n}\n\n\n\n\nResponse (when there is no data for calculating the bounding box):\n\n\n{\n  \"value\": null\n}",
+            "title": "Variables"
+        },
+        {
+            "location": "/reference/variables/#variables",
+            "text": "",
+            "title": "Variables"
+        },
+        {
+            "location": "/reference/variables/#get-scopevariablesid",
+            "text": ":id is the variable id.  It returns an aggregate value of a variable  Params:   agg: (mandatory): aggregation function. It must be max, min, avg or sum. It can be an array.  start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  bbox (optional) : [lx,ly,ux,uy]   Response 1:  {\n  value: 1\n}  Response 2:  {\n  \"value\": {\n    \"avg\": 24.599189759944835,\n    \"sum\": 2853875,\n  }\n}",
+            "title": "GET /:scope/variables/:id"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidnow",
+            "text": ":id is the variable id.  It returns an aggregate value of a variable for the current situation.  Payload 1:  {\n  \"agg\": \"SUM\",\n  \"filters\": {\n    \"bbox\": [lx,ly,ux,uy],\n    \"condition\": {\"OR\": {\"column1__in\": [], {\"AND\": {\"column2__gte\": 10, \"column2__lte\": 30}}}}\n  }\n}  Response 1:  {\n  \"value\": 51\n}  Payload 2:  {\n  \"agg\": [\"avg\", \"sum\"],\n  \"filters\": {\n    \"bbox\": [lx,ly,ux,uy],\n    \"condition\": {\"OR\": {\"column1__in\": [], {\"AND\": {\"column2__gte\": 10, \"column2__lte\": 30}}}}\n  }\n}  Response 2:  {\n  \"value\": {\n    \"avg\": 24.599189759944835,\n    \"sum\": 2853875,\n  }\n}",
+            "title": "POST /:scope/variables/:id/now"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidhistoric",
+            "text": ":id is the variable id.  It returns an aggregate value of a variable.  Payload 1:  {\n  \"agg\": SUM,\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\"\n  },\n  \"filters\": {\n    \"bbox\": [lx,ly,ux,uy],\n    \"condition\": {\"OR\": {\"column1__in\": [], {\"AND\": {\"column2__gte\": 10, \"column2__lte\": 30}}}}\n  }\n}  Response 1:  {\n  \"value\": 19\n}  Payload 2:  {\n  \"agg\": [\"avg\", \"sum\"],\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\"\n  },\n  \"filters\": {\n    \"bbox\": [lx,ly,ux,uy],\n    \"condition\": {\"OR\": {\"column1__in\": [], {\"AND\": {\"column2__gte\": 10, \"column2__lte\": 30}}}}\n  }\n}  Response 2:  {\n  \"value\": {\n    \"avg\": 24.599189759944835,\n    \"sum\": 2853875,\n  }\n}",
+            "title": "POST /:scope/variables/:id/historic"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablestimeserie",
+            "text": "It returns a time serie of a variable (or a set of variables).   agg: (mandatory): array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.  vars (mandatory): array of all variables ids.  start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)  bbox (optional) : [lx,ly,ux,uy]  findTimes  : true |\u00a0false. Default to false. If set to true and max or min aggregator are used, it returns the list of \"TimeInstant\" where the max or min appears.   Payload:  {\n  \"agg\": [\"SUM\",\"AVG\",\"AVG\",\"MIN\"],\n  \"vars\": [\"varible_id_1\",\"varible_id_2\",\"varible_id_3\",\"varible_id_3\"],\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"step\": \"1d\"\n  },\n  \"findTimes\" : true,\n  \"filters\": {\n    \"bbox\": [-5.11170,37.24000,-5.10818,37.24303]\n  }\n}  Response:  [{\n    \"time\": \"YYYY-MM-DD HH:MM\",\n    \"data\": {\n      \"<varible_id_1>\": 218,\n      \"<varible_id_2>\": 104,\n      \"<varible_id_3>\": [\n          {\n            \"agg\": \"AVG\",\n            \"value\": 34.2\n          },\n          {\n            \"agg\": \"MIN\",\n            \"value\": 0.56,\n            \"times\" : [\"YYYY-MM-DDTHH:MM:SSZ\",\"YYYY-MM-DDTHH:MM:SSZ\",\"YYYY-MM-DDTHH:MM:SSZ\"]\n          }\n        ]\n    }\n}]  Sample request  POST /osuna/variables/timeserie",
+            "title": "POST /:scope/variables/timeserie"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesid_variabledevices_group_timeserie",
+            "text": "It returns a time serie of a variable grouped by devices.\nIf requested (at groupagg), it also provides the aggregation of all devices.  Payload:  {\n  \"agg\": \"AVG\",\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"step\": \"1d\"\n  },\n  \"filters\": {\n    \"bbox\": [-5.11170,37.24000,-5.10818,37.24303]\n  }\n}   agg: aggregation function.  start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  groupagg(optional): true|false. Default to false. Show a line for each time which represents the aggregation of all devices.  step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)  bbox (optional) : [lx,ly,ux,uy]   Response:  [{\n    \"time\": \"YYYY-MM-DD HH:MM\",\n    \"data\": {\n      \"<device_id_1>\": \"value\",\n      \"<device_id_2>\": \"value\",\n      \"avg\" : \"value\"\n    }\n}]",
+            "title": "POST /:scope/variables/:id_variable/devices_group_timeserie"
+        },
+        {
+            "location": "/reference/variables/#get-scopevariablestimeserie",
+            "text": "It returns a time serie of a variable (or a set of variables).  Params:   agg: (mandatory): separated comma array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.  vars (mandatory): separated comma array of all variables ids.  start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)  bbox (optional) : [lx,ly,ux,uy]   Response:  [{\n    \"time\": \"YYYY-MM-DD HH:MM\",\n    \"data\": {\n      \"<varible_id_1>\": 218,\n      \"<varible_id_2>\": 104,\n      \"<varible_id_3>\": [\n          {\n            \"agg\": \"AVG\",\n            \"value\": 34.2\n          },\n          {\n            \"agg\": \"MIN\",\n            \"value\": 0.56\n          }\n        ]\n    }\n}]  Sample request  GET /osuna/variables/timeserie?start=2016-09-05T00:00&finish=2016-09-12T00:00&step=4h&vars=wt_soilhumidity,wt_soilhumidity,wm_waterconsumption,mt_pluvio,wm_battery,wt_battery&agg=AVG,MIN,AVG,SUM,SUM,AVG",
+            "title": "GET /:scope/variables/timeserie"
+        },
+        {
+            "location": "/reference/variables/#get-scopevariablesid_variabledevices_group_timeserie",
+            "text": "It returns a time serie of a variable grouped by devices.\nIf requested (at groupagg), it also provides the aggregation of all devices.  Params:   id_variable (mandatory): variable id.  agg: aggregation function.  start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  groupagg(optional): true|false. Default to false. Show a line for each time which represents the aggregation of all devices.  step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)  bbox (optional) : [lx,ly,ux,uy]   Response:  [{\n    \"time\": \"YYYY-MM-DD HH:MM\",\n    \"data\": {\n      \"<device_id_1>\": \"value\",\n      \"<device_id_2>\": \"value\",\n      \"avg\" : \"value\"\n    }\n}]",
+            "title": "GET /:scope/variables/:id_variable/devices_group_timeserie"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidhistogramcontinuousnow",
+            "text": "@TODO  Payload:  {\n  totals: true,\n  ranges: [\n    { '>=':0, '<':80},\n    { '>=':80, '<=': 90 },\n    { '>': 90 }\n  ],\n  filters: {..}\n}  Response (totals: true):  [{\n  total: 10,\n  value: 5\n },\n {\n   total: 20,\n   value: 15\n },\n {\n   total: 30,\n   value: 20\n }]  Response (totals: false):  [{\n  value: 5\n },\n {\n   value: 15\n },\n {\n   value: 20\n }]",
+            "title": "POST /:scope/variables/:id/histogram/continuous/now"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidhistogramdiscretenow",
+            "text": "@TODO  Payload: Auto-guessing categories  {\n  ranges: 'all'\n  filters: {..}\n}  Payload:Fixed categories  {\n  ranges: ['cat1','cat2','cat3'],\n  filters: {..}\n}  Response:  [{\n    category: 'cat1',\n    value: 10,\n    total: 15\n},\n{\n    category: 'cat2',\n    value: 20,\n    total: 25\n},\n{\n    category: 'cat3',\n    value: 30,\n    total: 35\n}]",
+            "title": "POST /:scope/variables/:id/histogram/discrete/now"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidhistogramtimeseriecontinuous",
+            "text": "Payload:  {\n  time: {\n    start: 'YYYY-MM-DDTHH:MM:SSZ',\n    finish: 'YYYY-MM-DDTHH:MM:SSZ',\n    step: '<in seconds>'\n  },\n  totals: false,\n  ranges: [\n    { '>=':0, '<':80},\n    { '>=':80, '<=': 90 },\n    { '>': 90 }\n  ],\n  filters: {..},\n  time_column: 'day'  // Optional, default: 'TimeInstant'\n}  Response:  [\n  {\n    \"time\": \"2016-09-07T15:00:00.000Z\",\n    \"data\": [\n      {\n        \"value\": 0,\n        \"total\": 0\n      },\n      {\n        \"value\": 0,\n        \"total\": 0\n      },\n      {\n        \"value\": \"8\",\n        \"total\": \"8\"\n      }\n    ]\n  }\n]",
+            "title": "POST /:scope/variables/:id/histogram/timeserie/continuous"
+        },
+        {
+            "location": "/reference/variables/#get-scopevariablesidouters",
+            "text": ":id is the variable id.  It returns the outers of an aggregation. It's used to build dynamic choropleth legends.  Params:   agg (mandatory): aggregation function. It must be max, min, avg or sum.  start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.   Response:  {\n  min: 10\n  max: 100\n}",
+            "title": "GET /:scope/variables/:id/outers"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesdailyagg",
+            "text": "It returns the dailyagg   agg: (mandatory): array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.  vars (mandatory): array of all variables ids.  start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)  bbox (optional) : [lx,ly,ux,uy]  findTimes  : true |\u00a0false. Default to false. If set to true and max or min aggregator are used, it returns the list of \"TimeInstant\" where the max or min appears.   Payload:  {\n  \"agg\": [\"SUM\",\"MAX\",\"AVG\",\"MIN\"],\n  \"vars\": [\"varible_id_1\",\"varible_id_2\",\"varible_id_3\",\"varible_id_3\"],\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"step\": \"1d\"\n  },\n  \"findTimes\" : true,\n  \"filters\": {\n    \"bbox\": [-5.11170,37.24000,-5.10818,37.24303]\n  }\n}  Response:  [{\n    \"time\": \"<seconds from 00:00 UTC>\",\n    \"data\": {\n      \"<varible_id_1>\": 33,\n      \"<varible_id_2>\": {\n        \"value\" : 35,\n        \"times\" : [\"YYYY-MM-DD\",\"YYYY-MM-DD\",\"YYYY-MM-DD\"]\n      },\n      \"<varible_id_3>\": [\n          {\n            \"agg\": \"AVG\",\n            \"value\": 34.2\n          },\n          {\n            \"agg\": \"MIN\",\n            \"value\": 0.56,\n            \"times\" : [\"YYYY-MM-DDTHH:MM:SSZ\",\"YYYY-MM-DDTHH:MM:SSZ\",\"YYYY-MM-DDTHH:MM:SSZ\"]\n          }\n        ]\n    }\n}]",
+            "title": "POST /:scope/variables/dailyagg"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesrankingnow",
+            "text": "It returns the current values of the requested variables ranked by a variable.   vars: (mandatory): array of all variables ids.  var_order (mandatory): variable id for ordering.  order (optional): 'asc' or 'desc', default 'desc'.  limit (optional): an intenger for limiting the query result, default without limit.  bbox (optional): [lx,ly,ux,uy]   Payload:  {\n  \"vars\": [\n    \"parking.offstreet.name\",\n    \"parking.offstreet.availablespotnumber\",\n    \"parking.offstreet.category\"\n  ],\n  \"var_order\": \"parking.offstreet.availablespotnumber\",\n  \"order\": \"desc\",\n  \"limit\": 5,\n  \"filters\": {\n    \"bbox\": [lx, ly, ux, uy]\n  }\n}  Response:  [\n  {\n    \"availablespotnumber\": 266,\n    \"category\": [\n      \"public\"\n    ],\n    \"name\": \"Pol\u00edgono Industrial Alcobendas - Parking 03\"\n  },\n  {\n    \"availablespotnumber\": 218,\n    \"category\": [\n      \"forCustomers\"\n    ],\n    \"name\": \"Las Tablas - Parking 03\"\n  },\n  {\n    \"availablespotnumber\": 166,\n    \"category\": [\n      \"forCustomers\"\n    ],\n    \"name\": \"Las Tablas - Parking 01\"\n  },\n  {\n    \"availablespotnumber\": 122,\n    \"category\": [\n      \"forCustomers\"\n    ],\n    \"name\": \"Las Tablas - Parking 02\"\n  },\n  {\n    \"availablespotnumber\": 116,\n    \"category\": [\n      \"public\"\n    ],\n    \"name\": \"Parque Empresarial Moraleja - Parking 02\"\n  }\n]",
+            "title": "POST /:scope/variables/ranking/now"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidweekserie",
+            "text": "Payload:  {\n  \"agg\": \"AVG\",\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\"\n  },\n  \"filters\": {\n    \"bbox\": [lx, ly, ux, uy]\n  }\n}  Response:  [\n  {\n    \"day\": \"Monday\",\n    \"data\": [<data at 00:00UTC>, ..., <data at 23:00UTC>]\n  },\n  {\n    \"day\": \"Tuesday\",\n    \"data\": [<data at 00:00UTC>, ..., <data at 23:00UTC>]\n  },\n  {\n    \"day\": \"Wednesday\",\n    \"data\": [<data at 00:00UTC>, ..., <data at 23:00UTC>]\n  }\n]",
+            "title": "POST /:scope/variables/:id/weekserie"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidhistogramdiscretegrouped",
+            "text": "It counts the rows of a table grouped by a column.  Payload 1:  {\n  \"time\": {\n    \"start\": \"2000-01-01T00:00:00Z\",\n    \"finish\": \"2999-01-01T00:00:00Z\"\n  },\n  \"filters\": {\n    \"bbox\": [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],\n    \"order\": \"asc\",  // Optional, default DESC\n    \"limit\": 10,  // Optional, default without limit\n    \"perc\": false,  // Optional, default false\n    \"condition\": {\n      \"AND\": {\n        \"user_country__in\": [\"Croatia\"],\n        \"week_day__in\": [\"5\", \"6\", \"7\"]\n      }\n    }\n  }\n}  Response 1:  [\n  {\n    \"category\": \"Split-Dalmatia\",\n    \"total\": 4\n  },\n  {\n    \"category\": \"Zagreb\",\n    \"total\": 2\n  }\n]  Payload 2:  {\n  \"time\": {\n    \"start\": \"2000-01-01T00:00:00Z\",\n    \"finish\": \"2999-01-01T00:00:00Z\"\n  },\n  \"filters\": {\n    \"bbox\": [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],\n    \"order\": \"desc\",  // Optional, default DESC\n    \"limit\": 2,  // Optional, default without limit\n    \"perc\": true,  // Optional, default false\n    \"condition\": {\n      \"AND\": {\n        \"user_country__in\": [\"Spain\"],\n        \"week_day__in\": [\"5\", \"6\", \"7\"]\n      }\n    }\n  }\n}  Response 2:  [\n  {\n    \"category\": \"Madrid\",\n    \"total\": 80.3197908286404\n  },\n  {\n    \"category\": \"Granada\",\n    \"total\": 19.680209171359614\n  }\n]",
+            "title": "POST /:scope/variables/:id/histogram/discrete/grouped"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidunique",
+            "text": "It returns the unique values of a variable. Also, you can filter it by another column with the  filters  key in the payload.  Payload:  {\n  \"time\": {\n    \"start\": \"2000-01-01T00:00:00Z\",\n    \"finish\": \"2999-01-01T00:00:00Z\"\n  },\n  \"filters\": {\n    \"bbox\": [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],\n    \"condition\": {\n      \"AND\": {\n        \"user_country__in\": [\"Croatia\"],\n        \"week_day__in\": [\"5\", \"6\", \"7\"]\n      }\n    }\n  }\n}  Response:  [\n  {\n    \"value\": \"Split-Dalmatia\"\n  },\n  {\n    \"value\": \"Zagreb\"\n  }\n]",
+            "title": "POST /:scope/variables/:id/unique"
+        },
+        {
+            "location": "/reference/variables/#post-scopevariablesidbounding_box",
+            "text": "It returns the returns bounding box of a variable. Also, you can filter it by another column with the  filters  key in the payload.  Payload:  {\n  \"time\": {\n    \"start\": \"2000-01-01T00:00:00Z\",\n    \"finish\": \"2999-01-01T00:00:00Z\"\n  },\n  \"filters\": {\n    \"condition\": {\n      \"AND\": {\n        \"user_country__in\": [\"Spain\"],\n        \"week_day__in\": [\"5\", \"6\", \"7\"]\n      }\n    }\n  }\n}  Response:  {\n  \"value\": [\n    -16.26,\n    28.463,\n    12.402,\n    47.86\n  ]\n}  Response (when there is no data for calculating the bounding box):  {\n  \"value\": null\n}",
+            "title": "POST /:scope/variables/:id/bounding_box"
+        },
+        {
+            "location": "/reference/devices/",
+            "text": "Devices\n\n\nGET /:scope/devices/map\n\n\nReturns the device widget map (general view).\nParams:\n- entities (mandatory): comma separated of entities ids.\n\n\nResponse:\n\n\n[{\n    \"device_id\":\"vertical.category.variable:es1\",\n    \"location\":{\"lat\":37.235251,\"lng\":-5.094984}\n}]\n\n\n\n\nGET /:scope/devices/mapentities\n\n\nReturns the device map.\nParams:\n- entities (mandatory): comma separated of entities ids.\n- geojson (optional): boolean (default = false)\n\n\nResponse:\n\n\nWITHOUT GEOJSON\n[{\n    \"device_id\":\"vertical.category.variable:es1\",\n    \"entity_id\":\"vertical.category.variable\",\n    \"location\":{\"lat\":37.235251,\"lng\":-5.094984},\n    \"timeinstant\":\"2016-06-15T17:38:48.063\",\n    \"lastdata\":[{\"var\":\"<id_var>\",\"value\":\"\"}]\n}]\n\nWITH GEOJSON\n[{\n    \"type\": \"Feature\",\n    \"geometry\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        -5.103975,\n        37.233236\n      ]\n    },\n    \"properties\": {\n      \"device_id\": \"vertical.category.variable:8m1\",\n      \"timeinstant\": \"2016-06-21T07:56:36.618\",\n      \"entity_id\": \"vertical.category.variable\",\n      \"lastdata\": [{\"var\":\"<id_var>\",\"value\":\"\"}]\n    }\n  }]\n\n\n\n\nPOST /:scope/devices/map/counters\n\n\nRequest: same as POST /:scope/devices/map.\n\n\nIt uses POST because of complexity of the params.\n\n\nFilters param is optional, if it's omitted data is returned without filtering.\n\n\nRequest:\n\n\n{\n \"entities\": [\"vertical.category.variable_0\",\"vertical.category.variable_1\",\"vertical.category.variable_2\"],\n \"filters\": {\n   \"vertical.category.variable_0\": {\n     \"ev_type\" : [\"type1\",\"type2\"],\n     \"ev_state\" : [\"status\",\"status2\"]\n   },\n   \"vertical.category.variable_1\": {\n     \"wt_soilhumidity\" : [\"status\",\"status2\"]\n   },\n   \"bbox\": [lx,ly,ux,uy]\n }\n}\n\n\n\n\nResponse:\n\n\n{\n  \"vertical.category.variable\": {\n    \"total\": \"<total_elements>\",\n    \"total_filter\": \"<total_elements_withfilter>\",\n  }\n}\n\n\n\n\nGET /:scope/devices/:id_entity/:id_device/lastdata\n\n\nIt returns the lastdata of a device\n\n\nParams:\n- id_entity (mandatory)\n- id_device (mandatory)\n\n\nSample request:\n\n\nGET /scope/devices/vertical.category.variable/vertical.category.variable:es1/devinfo\n\n\n\n\nSample response:\n\n\n{\n  \"id\": \"vertical.category.variable:es1\",\n  \"location\": {\n    \"lat\": 37.235251,\n    \"lng\": -5.094984\n  },\n  \"timeinstant\": \"2016-07-13T19:31:46.696Z\",\n  \"entity_id\": \"catergory\",\n  \"lastdata\": [\n    {\n      \"var_value\": \"O\",\n      \"var_id\": \"variable\"\n    },\n    {\n      \"var_value\": 4,\n      \"var_id\": \"variable\"\n    }\n  ]\n}\n\n\n\n\nPOST /:scope/devices/:id_entity/:id_device/raw\n\n\nRaw measurements of a device for a given time frame.\n\n\nIt returns a time serie of a variable (or a set of variables).\n\n\n\n\nvars (mandatory): array of all variables ids.\n\n\nstart (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nfinish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.\n\n\nbbox (optional) : [lx,ly,ux,uy]\n\n\n\n\nPayload:\n\n\n{\n  \"vars\": [\"varible_id_1\",\"varible_id_2\",\"varible_id_3\"],\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\"\n  },\n  \"filters\": {\n    \"bbox\": [-5.11170,37.24000,-5.10818,37.24303]\n  }\n}",
+            "title": "Devices"
+        },
+        {
+            "location": "/reference/devices/#devices",
+            "text": "",
+            "title": "Devices"
+        },
+        {
+            "location": "/reference/devices/#get-scopedevicesmap",
+            "text": "Returns the device widget map (general view).\nParams:\n- entities (mandatory): comma separated of entities ids.  Response:  [{\n    \"device_id\":\"vertical.category.variable:es1\",\n    \"location\":{\"lat\":37.235251,\"lng\":-5.094984}\n}]",
+            "title": "GET /:scope/devices/map"
+        },
+        {
+            "location": "/reference/devices/#get-scopedevicesmapentities",
+            "text": "Returns the device map.\nParams:\n- entities (mandatory): comma separated of entities ids.\n- geojson (optional): boolean (default = false)  Response:  WITHOUT GEOJSON\n[{\n    \"device_id\":\"vertical.category.variable:es1\",\n    \"entity_id\":\"vertical.category.variable\",\n    \"location\":{\"lat\":37.235251,\"lng\":-5.094984},\n    \"timeinstant\":\"2016-06-15T17:38:48.063\",\n    \"lastdata\":[{\"var\":\"<id_var>\",\"value\":\"\"}]\n}]\n\nWITH GEOJSON\n[{\n    \"type\": \"Feature\",\n    \"geometry\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        -5.103975,\n        37.233236\n      ]\n    },\n    \"properties\": {\n      \"device_id\": \"vertical.category.variable:8m1\",\n      \"timeinstant\": \"2016-06-21T07:56:36.618\",\n      \"entity_id\": \"vertical.category.variable\",\n      \"lastdata\": [{\"var\":\"<id_var>\",\"value\":\"\"}]\n    }\n  }]",
+            "title": "GET /:scope/devices/mapentities"
+        },
+        {
+            "location": "/reference/devices/#post-scopedevicesmapcounters",
+            "text": "Request: same as POST /:scope/devices/map.  It uses POST because of complexity of the params.  Filters param is optional, if it's omitted data is returned without filtering.  Request:  {\n \"entities\": [\"vertical.category.variable_0\",\"vertical.category.variable_1\",\"vertical.category.variable_2\"],\n \"filters\": {\n   \"vertical.category.variable_0\": {\n     \"ev_type\" : [\"type1\",\"type2\"],\n     \"ev_state\" : [\"status\",\"status2\"]\n   },\n   \"vertical.category.variable_1\": {\n     \"wt_soilhumidity\" : [\"status\",\"status2\"]\n   },\n   \"bbox\": [lx,ly,ux,uy]\n }\n}  Response:  {\n  \"vertical.category.variable\": {\n    \"total\": \"<total_elements>\",\n    \"total_filter\": \"<total_elements_withfilter>\",\n  }\n}",
+            "title": "POST /:scope/devices/map/counters"
+        },
+        {
+            "location": "/reference/devices/#get-scopedevicesid_entityid_devicelastdata",
+            "text": "It returns the lastdata of a device  Params:\n- id_entity (mandatory)\n- id_device (mandatory)  Sample request:  GET /scope/devices/vertical.category.variable/vertical.category.variable:es1/devinfo  Sample response:  {\n  \"id\": \"vertical.category.variable:es1\",\n  \"location\": {\n    \"lat\": 37.235251,\n    \"lng\": -5.094984\n  },\n  \"timeinstant\": \"2016-07-13T19:31:46.696Z\",\n  \"entity_id\": \"catergory\",\n  \"lastdata\": [\n    {\n      \"var_value\": \"O\",\n      \"var_id\": \"variable\"\n    },\n    {\n      \"var_value\": 4,\n      \"var_id\": \"variable\"\n    }\n  ]\n}",
+            "title": "GET /:scope/devices/:id_entity/:id_device/lastdata"
+        },
+        {
+            "location": "/reference/devices/#post-scopedevicesid_entityid_deviceraw",
+            "text": "Raw measurements of a device for a given time frame.  It returns a time serie of a variable (or a set of variables).   vars (mandatory): array of all variables ids.  start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.  bbox (optional) : [lx,ly,ux,uy]   Payload:  {\n  \"vars\": [\"varible_id_1\",\"varible_id_2\",\"varible_id_3\"],\n  \"time\": {\n    \"start\": \"YYYY-MM-DDTHH:MM:SSZ\",\n    \"finish\": \"YYYY-MM-DDTHH:MM:SSZ\"\n  },\n  \"filters\": {\n    \"bbox\": [-5.11170,37.24000,-5.10818,37.24303]\n  }\n}",
+            "title": "POST /:scope/devices/:id_entity/:id_device/raw"
+        },
+        {
+            "location": "/reference/users/",
+            "text": "Users\n\n\nGET /users\n\n\nIt returns the list of users.\n\n\nSample response:\n\n\n[{\n  id: 1,\n  name: \"John\",\n  surname : \"Smith\",\n  email: \"admin@domain.gs\",\n  superadmin: false,\n  scopes : [\"s1\",\"s2\",\"s3\"]\n  }]\n\n\n\n\nNotes:\n- Only superadmin can call this method\n\n\nPOST /users\n\n\nIt creates a new user\n\n\n{\n  name: \"John\",\n  surname: \"Smith\",\n  email: \"admin@domain.gs\",\n  password: \"test1234\",\n  superadmin : false,\n  scopes : [\"s1\",\"s2\",\"s3\"]\n}\n\n\n\n\nIf error it returns a error status code and a message:\n\n\n[\n  {\n    \"param\": \"email\",\n    \"msg\": \"required\"\n  }\n]\n\n\n\n\nif ok it returns the user id:\n\n\n{\n  id: 1\n}\n\n\n\n\nNotes:\n- Only superadmin can call this method\n\n\nGET /users/:id\n\n\nIt returns the info of an user:\n\n\n{\n  id: 1,\n  name: \"John\",\n  surname: \"Smith\",\n  email: \"admin@domain.gs\",\n  superadmin: false,\n  scopes : [\"s1\",\"s2\",\"s3\"]\n}\n\n\n\n\nNotes:\n- Only superadmin can get info of other users.\n- A non-superadmin user can only get the info of himself.\n\n\nPUT /users/:id\n\n\nIt updates the user info\n\n\n{\n  name: \"John\",\n  surname: \"Smith\",\n  email: \"admin@domain.gs\",\n  superadmin: false,\n  scopes : [\"s1\",\"s2\",\"s3\"],\n  old_password: \"test1234\",\n  password: \"awesomepassword\"\n}\n\n\n\n\nNotes:\n- Only admin can change other users data.\n- password: if the user who launches the request is not an admin user, he needs to supply the old_password.\n\n\nDELETE /users/:id\n\n\nIt deletes an user.\n\n\nSample response\n\n\n{\n  status : \"ok\"\n}\n\n\n\n\nNotes:\n- Only superadmin can use this method.",
+            "title": "Users"
+        },
+        {
+            "location": "/reference/users/#users",
+            "text": "",
+            "title": "Users"
+        },
+        {
+            "location": "/reference/users/#get-users",
+            "text": "It returns the list of users.  Sample response:  [{\n  id: 1,\n  name: \"John\",\n  surname : \"Smith\",\n  email: \"admin@domain.gs\",\n  superadmin: false,\n  scopes : [\"s1\",\"s2\",\"s3\"]\n  }]  Notes:\n- Only superadmin can call this method",
+            "title": "GET /users"
+        },
+        {
+            "location": "/reference/users/#post-users",
+            "text": "It creates a new user  {\n  name: \"John\",\n  surname: \"Smith\",\n  email: \"admin@domain.gs\",\n  password: \"test1234\",\n  superadmin : false,\n  scopes : [\"s1\",\"s2\",\"s3\"]\n}  If error it returns a error status code and a message:  [\n  {\n    \"param\": \"email\",\n    \"msg\": \"required\"\n  }\n]  if ok it returns the user id:  {\n  id: 1\n}  Notes:\n- Only superadmin can call this method",
+            "title": "POST /users"
+        },
+        {
+            "location": "/reference/users/#get-usersid",
+            "text": "It returns the info of an user:  {\n  id: 1,\n  name: \"John\",\n  surname: \"Smith\",\n  email: \"admin@domain.gs\",\n  superadmin: false,\n  scopes : [\"s1\",\"s2\",\"s3\"]\n}  Notes:\n- Only superadmin can get info of other users.\n- A non-superadmin user can only get the info of himself.",
+            "title": "GET /users/:id"
+        },
+        {
+            "location": "/reference/users/#put-usersid",
+            "text": "It updates the user info  {\n  name: \"John\",\n  surname: \"Smith\",\n  email: \"admin@domain.gs\",\n  superadmin: false,\n  scopes : [\"s1\",\"s2\",\"s3\"],\n  old_password: \"test1234\",\n  password: \"awesomepassword\"\n}  Notes:\n- Only admin can change other users data.\n- password: if the user who launches the request is not an admin user, he needs to supply the old_password.",
+            "title": "PUT /users/:id"
+        },
+        {
+            "location": "/reference/users/#delete-usersid",
+            "text": "It deletes an user.  Sample response  {\n  status : \"ok\"\n}  Notes:\n- Only superadmin can use this method.",
+            "title": "DELETE /users/:id"
+        },
+        {
+            "location": "/reference/logs/",
+            "text": "Logs\n\n\nPOST /logs/pageviews\n\n\nThis service stores information (url, user_ip, time) each time a user loads a page.\n\n\nPayload:\n\n\n{\n  \"url\" : \"/es/scope/vertical/dashboard/current\",\n}\n\n\n\n\nResponse\n\n\nHTTP status code 201 Created\n\n\n\n\n{\n  \"url\" : \"/es/scope/vertical/dashboard/current\",\n}\n\n\n\n\nSample request\n\n\nPOST /logs/pageviews\n\n\n\n\nGET /logs/pageviews\n\n\nThis service returns total views of each page visited for all users.\n\n\nParams:\n- start (mandatory): date start. Format is 'YYYY-MM-DDTHH:MM:SSZ'. Date time is UTC.\n- finish (mandatory): date finish. Format is 'YYYY-MM-DDTHH:MM:SSZ'. Date time is UTC.\n\n\nResponse\n\n\n[{\n\"url\" : \"/es/scope/vertical/dashboard/current\",\n\"pageviews\": 125\n},\n{\n\"url\" : \"/es/scope/vertical/dashboard/filling\",\n\"pageviews\": 102\n}]\n\n\n\n\nSample request\n\n\nGET /logs/pageviews?start=2016-09-26T00:00:00Z&finish=2016-10-10T23:59:59Z\n\n\n\n\nGET /logs/pageviews/user/:id_user\n\n\nThis service returns total views of each page visited for a user.\n\n\nParams:\n- start (mandatory): date start. Format is 'YYYY-MM-DDTHH:MM:SSZ'. Date time is UTC.\n- finish (mandatory): date finish. Format is 'YYYY-MM-DDTHH:MM:SSZ'. Date time is UTC.\n\n\nResponse\n\n\n[{\n\"url\" : \"/es/scope/vertical/dashboard/current\",\n\"pageviews\": 54\n},\n{\n\"url\" : \"/es/scope/vertical/dashboard/filling\",\n\"pageviews\": 54\n}]\n\n\n\n\nSample request\n\n\nGET /logs/pageviews/user/1?start=2016-09-26T00:00:00Z&finish=2016-10-10T23:59:59Z\n\n\n\n\nGET /logs/user/:id_user/lastlogin\n\n\nThis service returns the lastlogin timeinstant of a given user\n\n\nResponse\n\n\n{\n  \"lastlogin\": \"2016-12-03T12:09:26.786Z\"\n}\n\n\n\n\nSample request\n\n\nGET /logs/user/1/lastlogin",
+            "title": "Logs"
+        },
+        {
+            "location": "/reference/logs/#logs",
+            "text": "",
+            "title": "Logs"
+        },
+        {
+            "location": "/reference/logs/#post-logspageviews",
+            "text": "This service stores information (url, user_ip, time) each time a user loads a page.  Payload:  {\n  \"url\" : \"/es/scope/vertical/dashboard/current\",\n}  Response  HTTP status code 201 Created  {\n  \"url\" : \"/es/scope/vertical/dashboard/current\",\n}  Sample request  POST /logs/pageviews",
+            "title": "POST /logs/pageviews"
+        },
+        {
+            "location": "/reference/logs/#get-logspageviews",
+            "text": "This service returns total views of each page visited for all users.  Params:\n- start (mandatory): date start. Format is 'YYYY-MM-DDTHH:MM:SSZ'. Date time is UTC.\n- finish (mandatory): date finish. Format is 'YYYY-MM-DDTHH:MM:SSZ'. Date time is UTC.  Response  [{\n\"url\" : \"/es/scope/vertical/dashboard/current\",\n\"pageviews\": 125\n},\n{\n\"url\" : \"/es/scope/vertical/dashboard/filling\",\n\"pageviews\": 102\n}]  Sample request  GET /logs/pageviews?start=2016-09-26T00:00:00Z&finish=2016-10-10T23:59:59Z",
+            "title": "GET /logs/pageviews"
+        },
+        {
+            "location": "/reference/logs/#get-logspageviewsuserid_user",
+            "text": "This service returns total views of each page visited for a user.  Params:\n- start (mandatory): date start. Format is 'YYYY-MM-DDTHH:MM:SSZ'. Date time is UTC.\n- finish (mandatory): date finish. Format is 'YYYY-MM-DDTHH:MM:SSZ'. Date time is UTC.  Response  [{\n\"url\" : \"/es/scope/vertical/dashboard/current\",\n\"pageviews\": 54\n},\n{\n\"url\" : \"/es/scope/vertical/dashboard/filling\",\n\"pageviews\": 54\n}]  Sample request  GET /logs/pageviews/user/1?start=2016-09-26T00:00:00Z&finish=2016-10-10T23:59:59Z",
+            "title": "GET /logs/pageviews/user/:id_user"
+        },
+        {
+            "location": "/reference/logs/#get-logsuserid_userlastlogin",
+            "text": "This service returns the lastlogin timeinstant of a given user  Response  {\n  \"lastlogin\": \"2016-12-03T12:09:26.786Z\"\n}  Sample request  GET /logs/user/1/lastlogin",
+            "title": "GET /logs/user/:id_user/lastlogin"
+        },
+        {
+            "location": "/reference/admin/scopes/",
+            "text": "Scopes admin\n\n\n\n\nOnly superadmin can call these methods\n\n\n\n\nGET\u00a0/admin/scopes\n\n\n[{\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"status\": 1,\n  \"multi\":false\n}]\n\n\n\n\nPOST\u00a0/admin/scopes\n\n\nSample for multi scope\n\n\n{\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\": true\n}\n\n\n\n\nSample for non-multi inside a multi\n\n\n{\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\" : false,\n  \"parent_id\" : \"pre_id\"\n}\n\n\n\n\nSample for non-multi\n\n\n{\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\": false\n}\n\n\n\n\nif ok it returns the scope id:\n\n\n{\n  id: \"id\"\n}\n\n\n\n\nNotes:\n- Primary key and dbschema will be autogenerated.\n- Status will be set to 0.\n\n\nGET /admin/scopes/:id_scope\n\n\n{\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\":false,\n  \"parent_id\": \"pre_id\",\n}\n\n\n\n\nPUT /admin/scopes/:id_scope\n\n\n{\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"dbschema\": \"schema\",\n  \"status\":1\n}\n\n\n\n\nIf error it returns a error status code and a message:\n\n\n[\n  {\n    \"param\": \"dbschema\",\n    \"msg\": \"already used\"\n  }\n]\n\n\n\n\nif ok it returns:\n\n\n{\n  status: \"ok\"\n}\n\n\n\n\nNotes:\n - It only updates the fields provided\n - Multi and parent_id fields are not editable.\n\n\nDELETE /admin/scopes/:id_scope\n\n\nDelete the scope.\n\n\nif ok it returns:\n\n\n{\n  status: \"ok\"\n}\n\n\n\n\nGET /admin/scopes/:id_scope/multi/children\n\n\nIt returns the list of scopes who belong to the requested scope\n\n\n[{\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"status\": 1\n}]\n\n\n\n\nPOST /admin/scopes/:id_scope/categories\n\n\nIt adds a category to the scope\n\n\n{\n  \"id\": \"vertical\",\n  \"name\": \"Name\"\n}\n\n\n\n\nDELETE /admin/scopes/:id_scope/categories/:id_category\n\n\nIt removes a category from the scope\n\n\nPOST /admin/scopes/:id_scope/entities\n\n\nIt adds an entity to the scope\n\n\n{\n  \"id\": \"<id_entity>\",\n  \"name\" : \"Entity name\",\n  \"id_category\": \"id_category\",\n  \"table\": \"DB Table\",\n}\n\n\n\n\nDELETE /admin/scopes/:id_scope/entities/:id_entity\n\n\nIt removes an entity from the scope\n\n\nPOST /admin/scopes/:id_scope/variables\n\n\nIt adds a variable to the scope\n\n\n{\n   \"id\": \"<id_variable>\",\n   \"id_entity\": \"id_entity\",\n   \"name\": \"<var_name>\",\n   \"units\": \"<var_units>\",\n   \"var_thresholds\": [],\n   \"var_agg\": [\"SUM\",\"MAX\",\"MIN\",\"AVG\"],\n   \"reverse\": false,\n   \"config\": {}\n }\n\n\n\n\nPUT /admin/scopes/:id_scope/variables/:id\n\n\nEdits a scope variable\n\n\n{\n   \"id_entity\": \"id_entity\",\n   \"name\": \"<var_name>\",\n   \"units\": \"<var_units>\",\n   \"var_thresholds\": [],\n   \"var_agg\": [\"SUM\",\"MAX\",\"MIN\",\"AVG\"],\n   \"reverse\": false,\n   \"config\": {}\n }\n\n\n\n\nDELETE /admin/scopes/:id_scope/variables/:id\n\n\nDelete a variable\n\n\nGET /admin/scopes/:id_scope/permissions/:id_resource\n\n\nList of users_ids who are allowed to the provided scope and resource.\n\n\n[{\n  \"id\": 1,\n  \"name\" : \"User name\",\n  \"surname\" : \"User surname\",\n  \"superadmin\" : true\n}]\n\n\n\n\nPUT /admin/scopes/:id_scope/permissions/:id_resource\n\n\nParams:\n\n\n\n\nadd: List of users_ids who will be granted to.\n\n\nrm: List of users_ids to be banned.\n\n\n\n\nSample request.\n\n\n{\n  \"add\" : [1,2,3,4],\n  \"rm\" : [5,6]\n}",
+            "title": "Scopes"
+        },
+        {
+            "location": "/reference/admin/scopes/#scopes-admin",
+            "text": "Only superadmin can call these methods",
+            "title": "Scopes admin"
+        },
+        {
+            "location": "/reference/admin/scopes/#get-adminscopes",
+            "text": "[{\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"status\": 1,\n  \"multi\":false\n}]",
+            "title": "GET\u00a0/admin/scopes"
+        },
+        {
+            "location": "/reference/admin/scopes/#post-adminscopes",
+            "text": "Sample for multi scope  {\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\": true\n}  Sample for non-multi inside a multi  {\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\" : false,\n  \"parent_id\" : \"pre_id\"\n}  Sample for non-multi  {\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\": false\n}  if ok it returns the scope id:  {\n  id: \"id\"\n}  Notes:\n- Primary key and dbschema will be autogenerated.\n- Status will be set to 0.",
+            "title": "POST\u00a0/admin/scopes"
+        },
+        {
+            "location": "/reference/admin/scopes/#get-adminscopesid_scope",
+            "text": "{\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"multi\":false,\n  \"parent_id\": \"pre_id\",\n}",
+            "title": "GET /admin/scopes/:id_scope"
+        },
+        {
+            "location": "/reference/admin/scopes/#put-adminscopesid_scope",
+            "text": "{\n  \"name\": \"Name\",\n  \"location\": [37.237364, -5.103308],\n  \"zoom\": 15,\n  \"dbschema\": \"schema\",\n  \"status\":1\n}  If error it returns a error status code and a message:  [\n  {\n    \"param\": \"dbschema\",\n    \"msg\": \"already used\"\n  }\n]  if ok it returns:  {\n  status: \"ok\"\n}  Notes:\n - It only updates the fields provided\n - Multi and parent_id fields are not editable.",
+            "title": "PUT /admin/scopes/:id_scope"
+        },
+        {
+            "location": "/reference/admin/scopes/#delete-adminscopesid_scope",
+            "text": "Delete the scope.  if ok it returns:  {\n  status: \"ok\"\n}",
+            "title": "DELETE /admin/scopes/:id_scope"
+        },
+        {
+            "location": "/reference/admin/scopes/#get-adminscopesid_scopemultichildren",
+            "text": "It returns the list of scopes who belong to the requested scope  [{\n  \"id\": \"id\",\n  \"name\": \"Name\",\n  \"status\": 1\n}]",
+            "title": "GET /admin/scopes/:id_scope/multi/children"
+        },
+        {
+            "location": "/reference/admin/scopes/#post-adminscopesid_scopecategories",
+            "text": "It adds a category to the scope  {\n  \"id\": \"vertical\",\n  \"name\": \"Name\"\n}",
+            "title": "POST /admin/scopes/:id_scope/categories"
+        },
+        {
+            "location": "/reference/admin/scopes/#delete-adminscopesid_scopecategoriesid_category",
+            "text": "It removes a category from the scope",
+            "title": "DELETE /admin/scopes/:id_scope/categories/:id_category"
+        },
+        {
+            "location": "/reference/admin/scopes/#post-adminscopesid_scopeentities",
+            "text": "It adds an entity to the scope  {\n  \"id\": \"<id_entity>\",\n  \"name\" : \"Entity name\",\n  \"id_category\": \"id_category\",\n  \"table\": \"DB Table\",\n}",
+            "title": "POST /admin/scopes/:id_scope/entities"
+        },
+        {
+            "location": "/reference/admin/scopes/#delete-adminscopesid_scopeentitiesid_entity",
+            "text": "It removes an entity from the scope",
+            "title": "DELETE /admin/scopes/:id_scope/entities/:id_entity"
+        },
+        {
+            "location": "/reference/admin/scopes/#post-adminscopesid_scopevariables",
+            "text": "It adds a variable to the scope  {\n   \"id\": \"<id_variable>\",\n   \"id_entity\": \"id_entity\",\n   \"name\": \"<var_name>\",\n   \"units\": \"<var_units>\",\n   \"var_thresholds\": [],\n   \"var_agg\": [\"SUM\",\"MAX\",\"MIN\",\"AVG\"],\n   \"reverse\": false,\n   \"config\": {}\n }",
+            "title": "POST /admin/scopes/:id_scope/variables"
+        },
+        {
+            "location": "/reference/admin/scopes/#put-adminscopesid_scopevariablesid",
+            "text": "Edits a scope variable  {\n   \"id_entity\": \"id_entity\",\n   \"name\": \"<var_name>\",\n   \"units\": \"<var_units>\",\n   \"var_thresholds\": [],\n   \"var_agg\": [\"SUM\",\"MAX\",\"MIN\",\"AVG\"],\n   \"reverse\": false,\n   \"config\": {}\n }",
+            "title": "PUT /admin/scopes/:id_scope/variables/:id"
+        },
+        {
+            "location": "/reference/admin/scopes/#delete-adminscopesid_scopevariablesid",
+            "text": "Delete a variable",
+            "title": "DELETE /admin/scopes/:id_scope/variables/:id"
+        },
+        {
+            "location": "/reference/admin/scopes/#get-adminscopesid_scopepermissionsid_resource",
+            "text": "List of users_ids who are allowed to the provided scope and resource.  [{\n  \"id\": 1,\n  \"name\" : \"User name\",\n  \"surname\" : \"User surname\",\n  \"superadmin\" : true\n}]",
+            "title": "GET /admin/scopes/:id_scope/permissions/:id_resource"
+        },
+        {
+            "location": "/reference/admin/scopes/#put-adminscopesid_scopepermissionsid_resource",
+            "text": "Params:   add: List of users_ids who will be granted to.  rm: List of users_ids to be banned.   Sample request.  {\n  \"add\" : [1,2,3,4],\n  \"rm\" : [5,6]\n}",
+            "title": "PUT /admin/scopes/:id_scope/permissions/:id_resource"
+        },
+        {
+            "location": "/sockets/",
+            "text": "Sockets\n\n\nConnection URLs\n\n\n\n\nLocal: \nws://localhost:3001\n\n\nDEV: \nws://urbo-backend-dev.geographica.gs/api/\n\n\nPRO: \nwss://urbo-backend.geographica.gs/api/\n\n\n\n\nProcess\n\n\n\n\nConnect to the WebSocket server.\n\n\nConfigure\n your connection:\n\n\nSend the authentication data.\n\n\nSend the namespaces you want to subscribe. You can send this in the authentication message.\n\n\n\n\n\n\nThe server responds with a \nstatus message\n and closing the socket if there's no authentication data or it's not valid.\n\n\nThe server will send \ncontent messages\n with new data on the namespaces you are subscribed.\n\n\nYou can reconfigure your subscriptions or close your socket whenever you want.\n\n\n\n\nConfiguration messages\n\n\nThis type of message is sent by the clients to the server and will trigger a \nstatus message\n response. Its fields are:\n\n\n\n\nauth\n:\n\n\nType: \nstring\n.\n\n\nValue: the client's authentication token.\n\n\nMandatory: Only in the first message after the connection, ignored on the rest.\n\n\n\n\n\n\nsubscribe\n:\n\n\nType: \n[string]\n.\n\n\nValue: The names of the namespaces you want to subscribe.\n\n\nMandatory: False.\n\n\n\n\n\n\nunsubscribe\n:\n\n\nType: \n[string]\n.\n\n\nValue: The names of the namespaces you want to unsubscribe.\n\n\nMandatory: False.\n\n\n\n\n\n\n\n\nExample 1:\n\n\n{\n  \"auth\": \"00Sd11u2EuFe21vOS3FF\"\n}\n\n\n\n\nExample 2:\n\n\n{\n  \"auth\": \"00Sd11u2EuFe21vOS3FF\",\n  \"subscribe\": [\n    \"scope1.category1.entity1\",\n    \"scope1.category2.entity1\"\n  ]\n}\n\n\n\n\nExample 3:\n\n\n{\n  \"subscribe\": [\n    \"scope2.category1.entity1\"\n  ],\n  \"unsubscribe\": [\n    \"scope1.category1.entity1\",\n    \"scope1.category2.entity1\"\n  ]\n}\n\n\n\n\nExample 4:\n\n\n{\n  \"subscribe\": [\n    \"scope2.category2.entity1\"\n  ]\n}\n\n\n\n\nExample 5:\n\n\n{\n  \"unsubscribe\": [\n    \"scope2.category1.entity1\",\n    \"scope2.category2.entity1\"\n  ]\n}\n\n\n\n\nStatus messages\n\n\nThis type of message is sent by the server after a client's \nconfiguration message\n, even if it's empty. Its fields are:\n\n\n\n\ntype\n:\n\n\nType: \nstring\n.\n\n\nValue: \nstatus\n.\n\n\n\n\n\n\nlogged\n:\n\n\nType: \nboolean\n.\n\n\nValue: It indicates if the user is could sign in.\n\n\n\n\n\n\nsubscriptions\n:\n\n\nType: \n[string]\n.\n\n\nValue: The name of the namespaces the user is subscribed.\n\n\n\n\n\n\n\n\nExample 1:\n\n\n{\n  \"type\": \"status\",\n  \"logged\": false\n}\n\n\n\n\nExample 2:\n\n\n{\n  \"type\": \"status\",\n  \"logged\": true,\n  \"subscriptions\": []\n}\n\n\n\n\nExample 3:\n\n\n{\n  \"type\": \"status\",\n  \"logged\": true,\n  \"subscriptions\": [\n    \"scope1.category1.entity1\",\n    \"scope1.category2.entity1\"\n  ]\n}\n\n\n\n\nContent messages\n\n\nThis type of message is sent by the server within a namespace with new data. Its fields are:\n\n\n\n\ntype\n:\n\n\nType: \nstring\n.\n\n\nValue: \ncontent\n.\n\n\n\n\n\n\nnamespace\n:\n\n\nType: \nstring\n.\n\n\nValue: The namespace name.\n\n\n\n\n\n\ndata\n:\n\n\nType: \nobject\n.\n\n\nValue: New data from the namespace.\n\n\n\n\n\n\n\n\nExample:\n\n\n{\n  \"type\": \"content\",\n  \"namespace\": \"scope1.category1.entity1\",\n  \"data\": {\n    ...\n  }\n}",
+            "title": "Sockets"
+        },
+        {
+            "location": "/sockets/#sockets",
+            "text": "",
+            "title": "Sockets"
+        },
+        {
+            "location": "/sockets/#connection-urls",
+            "text": "Local:  ws://localhost:3001  DEV:  ws://urbo-backend-dev.geographica.gs/api/  PRO:  wss://urbo-backend.geographica.gs/api/",
+            "title": "Connection URLs"
+        },
+        {
+            "location": "/sockets/#process",
+            "text": "Connect to the WebSocket server.  Configure  your connection:  Send the authentication data.  Send the namespaces you want to subscribe. You can send this in the authentication message.    The server responds with a  status message  and closing the socket if there's no authentication data or it's not valid.  The server will send  content messages  with new data on the namespaces you are subscribed.  You can reconfigure your subscriptions or close your socket whenever you want.",
+            "title": "Process"
+        },
+        {
+            "location": "/sockets/#configuration-messages",
+            "text": "This type of message is sent by the clients to the server and will trigger a  status message  response. Its fields are:   auth :  Type:  string .  Value: the client's authentication token.  Mandatory: Only in the first message after the connection, ignored on the rest.    subscribe :  Type:  [string] .  Value: The names of the namespaces you want to subscribe.  Mandatory: False.    unsubscribe :  Type:  [string] .  Value: The names of the namespaces you want to unsubscribe.  Mandatory: False.     Example 1:  {\n  \"auth\": \"00Sd11u2EuFe21vOS3FF\"\n}  Example 2:  {\n  \"auth\": \"00Sd11u2EuFe21vOS3FF\",\n  \"subscribe\": [\n    \"scope1.category1.entity1\",\n    \"scope1.category2.entity1\"\n  ]\n}  Example 3:  {\n  \"subscribe\": [\n    \"scope2.category1.entity1\"\n  ],\n  \"unsubscribe\": [\n    \"scope1.category1.entity1\",\n    \"scope1.category2.entity1\"\n  ]\n}  Example 4:  {\n  \"subscribe\": [\n    \"scope2.category2.entity1\"\n  ]\n}  Example 5:  {\n  \"unsubscribe\": [\n    \"scope2.category1.entity1\",\n    \"scope2.category2.entity1\"\n  ]\n}",
+            "title": "Configuration messages"
+        },
+        {
+            "location": "/sockets/#status-messages",
+            "text": "This type of message is sent by the server after a client's  configuration message , even if it's empty. Its fields are:   type :  Type:  string .  Value:  status .    logged :  Type:  boolean .  Value: It indicates if the user is could sign in.    subscriptions :  Type:  [string] .  Value: The name of the namespaces the user is subscribed.     Example 1:  {\n  \"type\": \"status\",\n  \"logged\": false\n}  Example 2:  {\n  \"type\": \"status\",\n  \"logged\": true,\n  \"subscriptions\": []\n}  Example 3:  {\n  \"type\": \"status\",\n  \"logged\": true,\n  \"subscriptions\": [\n    \"scope1.category1.entity1\",\n    \"scope1.category2.entity1\"\n  ]\n}",
+            "title": "Status messages"
+        },
+        {
+            "location": "/sockets/#content-messages",
+            "text": "This type of message is sent by the server within a namespace with new data. Its fields are:   type :  Type:  string .  Value:  content .    namespace :  Type:  string .  Value: The namespace name.    data :  Type:  object .  Value: New data from the namespace.     Example:  {\n  \"type\": \"content\",\n  \"namespace\": \"scope1.category1.entity1\",\n  \"data\": {\n    ...\n  }\n}",
+            "title": "Content messages"
+        },
+        {
+            "location": "/database/",
+            "text": "Database\n\n\nCreate Urbo database\n\n\ndocker create -v /data --name urbo_pgdata debian /bin/true\ndcp up postgis\n\n\n\n\nImport database\n\n\nRecreate Urbo database\n\n\ndcp stop\ndcp rm -f\ndocker rm -v urbo_pgdata\ndocker create -v /data --name urbo_pgdata debian /bin/true\ndcp up postgis\n\n\n\n\nImport database\n\n\nImport database\n\n\nDownload dump:\n\n\naws s3 cp s3://geographica-team/proyectos/urbo/databases/urbo.sprint-10.sql.tar.gz .\ntar xvzf urbo.sprint-10.sql.tar.gz\n\n\n\n\nImport dump:\n\n\ndocker exec -i urbo_postgis_1 psql -U postgres < urbo.sql\n\n\n\n\nNote it doesn't work with (because -i is not available at docker-compose):\n\n\ndcp exec -i postgis psql -U postgres < urbo.sql\n\n\n\n\nDatabase migrations\n\n\nCreate a new migration\n\n\ndcp exec api npm run createmigration -- <migration_name>\n\n\n\n\nApply migrations\n\n\ndcp exec api npm run migrate",
+            "title": "Database"
+        },
+        {
+            "location": "/database/#database",
+            "text": "",
+            "title": "Database"
+        },
+        {
+            "location": "/database/#create-urbo-database",
+            "text": "docker create -v /data --name urbo_pgdata debian /bin/true\ndcp up postgis  Import database",
+            "title": "Create Urbo database"
+        },
+        {
+            "location": "/database/#recreate-urbo-database",
+            "text": "dcp stop\ndcp rm -f\ndocker rm -v urbo_pgdata\ndocker create -v /data --name urbo_pgdata debian /bin/true\ndcp up postgis  Import database",
+            "title": "Recreate Urbo database"
+        },
+        {
+            "location": "/database/#import-database",
+            "text": "Download dump:  aws s3 cp s3://geographica-team/proyectos/urbo/databases/urbo.sprint-10.sql.tar.gz .\ntar xvzf urbo.sprint-10.sql.tar.gz  Import dump:  docker exec -i urbo_postgis_1 psql -U postgres < urbo.sql  Note it doesn't work with (because -i is not available at docker-compose):  dcp exec -i postgis psql -U postgres < urbo.sql",
+            "title": "Import database"
+        },
+        {
+            "location": "/database/#database-migrations",
+            "text": "Create a new migration  dcp exec api npm run createmigration -- <migration_name>  Apply migrations  dcp exec api npm run migrate",
+            "title": "Database migrations"
+        }
+    ]
+}

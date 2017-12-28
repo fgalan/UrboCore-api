@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Devices - URBO API</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">URBO API</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../metadata/">Metadata</a>
+</li>
+                            
+<li >
+    <a href="../scopes/">Scopes</a>
+</li>
+                            
+<li >
+    <a href="../entities/">Entities</a>
+</li>
+                            
+<li >
+    <a href="../variables/">Variables</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Devices</a>
+</li>
+                            
+<li >
+    <a href="../users/">Users</a>
+</li>
+                            
+<li >
+    <a href="../logs/">Logs</a>
+</li>
+                            
+  <li class="dropdown-submenu">
+    <a href="#">Admin</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../admin/scopes/">Scopes</a>
+</li>
+    </ul>
+  </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <a href="../../sockets/">Sockets</a>
+                    </li>
+                    <li >
+                        <a href="../../database/">Database</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../variables/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../users/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#devices">Devices</a></li>
+            <li><a href="#get-scopedevicesmap">GET /:scope/devices/map</a></li>
+            <li><a href="#get-scopedevicesmapentities">GET /:scope/devices/mapentities</a></li>
+            <li><a href="#post-scopedevicesmapcounters">POST /:scope/devices/map/counters</a></li>
+        <li class="main "><a href="#get-scopedevicesid_entityid_devicelastdata">GET /:scope/devices/:id_entity/:id_device/lastdata</a></li>
+        <li class="main "><a href="#post-scopedevicesid_entityid_deviceraw">POST /:scope/devices/:id_entity/:id_device/raw</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="devices">Devices</h2>
+<h3 id="get-scopedevicesmap">GET /:scope/devices/map</h3>
+<p>Returns the device widget map (general view).
+Params:
+- entities (mandatory): comma separated of entities ids.</p>
+<p>Response:</p>
+<pre><code class="json">[{
+    &quot;device_id&quot;:&quot;vertical.category.variable:es1&quot;,
+    &quot;location&quot;:{&quot;lat&quot;:37.235251,&quot;lng&quot;:-5.094984}
+}]
+</code></pre>
+
+<h3 id="get-scopedevicesmapentities">GET /:scope/devices/mapentities</h3>
+<p>Returns the device map.
+Params:
+- entities (mandatory): comma separated of entities ids.
+- geojson (optional): boolean (default = false)</p>
+<p>Response:</p>
+<pre><code class="json">WITHOUT GEOJSON
+[{
+    &quot;device_id&quot;:&quot;vertical.category.variable:es1&quot;,
+    &quot;entity_id&quot;:&quot;vertical.category.variable&quot;,
+    &quot;location&quot;:{&quot;lat&quot;:37.235251,&quot;lng&quot;:-5.094984},
+    &quot;timeinstant&quot;:&quot;2016-06-15T17:38:48.063&quot;,
+    &quot;lastdata&quot;:[{&quot;var&quot;:&quot;&lt;id_var&gt;&quot;,&quot;value&quot;:&quot;&quot;}]
+}]
+
+WITH GEOJSON
+[{
+    &quot;type&quot;: &quot;Feature&quot;,
+    &quot;geometry&quot;: {
+      &quot;type&quot;: &quot;Point&quot;,
+      &quot;coordinates&quot;: [
+        -5.103975,
+        37.233236
+      ]
+    },
+    &quot;properties&quot;: {
+      &quot;device_id&quot;: &quot;vertical.category.variable:8m1&quot;,
+      &quot;timeinstant&quot;: &quot;2016-06-21T07:56:36.618&quot;,
+      &quot;entity_id&quot;: &quot;vertical.category.variable&quot;,
+      &quot;lastdata&quot;: [{&quot;var&quot;:&quot;&lt;id_var&gt;&quot;,&quot;value&quot;:&quot;&quot;}]
+    }
+  }]
+</code></pre>
+
+<h3 id="post-scopedevicesmapcounters">POST /:scope/devices/map/counters</h3>
+<p>Request: same as POST /:scope/devices/map.</p>
+<p>It uses POST because of complexity of the params.</p>
+<p>Filters param is optional, if it's omitted data is returned without filtering.</p>
+<p>Request:</p>
+<pre><code class="json">{
+ &quot;entities&quot;: [&quot;vertical.category.variable_0&quot;,&quot;vertical.category.variable_1&quot;,&quot;vertical.category.variable_2&quot;],
+ &quot;filters&quot;: {
+   &quot;vertical.category.variable_0&quot;: {
+     &quot;ev_type&quot; : [&quot;type1&quot;,&quot;type2&quot;],
+     &quot;ev_state&quot; : [&quot;status&quot;,&quot;status2&quot;]
+   },
+   &quot;vertical.category.variable_1&quot;: {
+     &quot;wt_soilhumidity&quot; : [&quot;status&quot;,&quot;status2&quot;]
+   },
+   &quot;bbox&quot;: [lx,ly,ux,uy]
+ }
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code class="json">{
+  &quot;vertical.category.variable&quot;: {
+    &quot;total&quot;: &quot;&lt;total_elements&gt;&quot;,
+    &quot;total_filter&quot;: &quot;&lt;total_elements_withfilter&gt;&quot;,
+  }
+}
+</code></pre>
+
+<h2 id="get-scopedevicesid_entityid_devicelastdata">GET /:scope/devices/:id_entity/:id_device/lastdata</h2>
+<p>It returns the lastdata of a device</p>
+<p>Params:
+- id_entity (mandatory)
+- id_device (mandatory)</p>
+<p>Sample request:</p>
+<pre><code class="json">GET /scope/devices/vertical.category.variable/vertical.category.variable:es1/devinfo
+</code></pre>
+
+<p>Sample response:</p>
+<pre><code class="json">{
+  &quot;id&quot;: &quot;vertical.category.variable:es1&quot;,
+  &quot;location&quot;: {
+    &quot;lat&quot;: 37.235251,
+    &quot;lng&quot;: -5.094984
+  },
+  &quot;timeinstant&quot;: &quot;2016-07-13T19:31:46.696Z&quot;,
+  &quot;entity_id&quot;: &quot;catergory&quot;,
+  &quot;lastdata&quot;: [
+    {
+      &quot;var_value&quot;: &quot;O&quot;,
+      &quot;var_id&quot;: &quot;variable&quot;
+    },
+    {
+      &quot;var_value&quot;: 4,
+      &quot;var_id&quot;: &quot;variable&quot;
+    }
+  ]
+}
+</code></pre>
+
+<h2 id="post-scopedevicesid_entityid_deviceraw">POST /:scope/devices/:id_entity/:id_device/raw</h2>
+<p>Raw measurements of a device for a given time frame.</p>
+<p>It returns a time serie of a variable (or a set of variables).</p>
+<ul>
+<li>vars (mandatory): array of all variables ids.</li>
+<li>start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>bbox (optional) : [lx,ly,ux,uy]</li>
+</ul>
+<p>Payload:</p>
+<pre><code class="json">{
+  &quot;vars&quot;: [&quot;varible_id_1&quot;,&quot;varible_id_2&quot;,&quot;varible_id_3&quot;],
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;finish&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [-5.11170,37.24000,-5.10818,37.24303]
+  }
+}
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/require.js"></script>
+        <script src="../../search/search.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </body>
+</html>

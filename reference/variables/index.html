@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Variables - URBO API</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">URBO API</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../metadata/">Metadata</a>
+</li>
+                            
+<li >
+    <a href="../scopes/">Scopes</a>
+</li>
+                            
+<li >
+    <a href="../entities/">Entities</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Variables</a>
+</li>
+                            
+<li >
+    <a href="../devices/">Devices</a>
+</li>
+                            
+<li >
+    <a href="../users/">Users</a>
+</li>
+                            
+<li >
+    <a href="../logs/">Logs</a>
+</li>
+                            
+  <li class="dropdown-submenu">
+    <a href="#">Admin</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../admin/scopes/">Scopes</a>
+</li>
+    </ul>
+  </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <a href="../../sockets/">Sockets</a>
+                    </li>
+                    <li >
+                        <a href="../../database/">Database</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../entities/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../devices/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#variables">Variables</a></li>
+            <li><a href="#get-scopevariablesid">GET /:scope/variables/:id</a></li>
+            <li><a href="#post-scopevariablesidnow">POST /:scope/variables/:id/now</a></li>
+            <li><a href="#post-scopevariablesidhistoric">POST /:scope/variables/:id/historic</a></li>
+            <li><a href="#post-scopevariablestimeserie">POST /:scope/variables/timeserie</a></li>
+            <li><a href="#post-scopevariablesid_variabledevices_group_timeserie">POST /:scope/variables/:id_variable/devices_group_timeserie</a></li>
+            <li><a href="#get-scopevariablestimeserie">GET /:scope/variables/timeserie</a></li>
+            <li><a href="#get-scopevariablesid_variabledevices_group_timeserie">GET /:scope/variables/:id_variable/devices_group_timeserie</a></li>
+            <li><a href="#post-scopevariablesidhistogramcontinuousnow">POST /:scope/variables/:id/histogram/continuous/now</a></li>
+            <li><a href="#post-scopevariablesidhistogramdiscretenow">POST /:scope/variables/:id/histogram/discrete/now</a></li>
+            <li><a href="#post-scopevariablesidhistogramtimeseriecontinuous">POST /:scope/variables/:id/histogram/timeserie/continuous</a></li>
+            <li><a href="#get-scopevariablesidouters">GET /:scope/variables/:id/outers</a></li>
+            <li><a href="#post-scopevariablesdailyagg">POST /:scope/variables/dailyagg</a></li>
+            <li><a href="#post-scopevariablesrankingnow">POST /:scope/variables/ranking/now</a></li>
+            <li><a href="#post-scopevariablesidweekserie">POST /:scope/variables/:id/weekserie</a></li>
+            <li><a href="#post-scopevariablesidhistogramdiscretegrouped">POST /:scope/variables/:id/histogram/discrete/grouped</a></li>
+            <li><a href="#post-scopevariablesidunique">POST /:scope/variables/:id/unique</a></li>
+            <li><a href="#post-scopevariablesidbounding_box">POST /:scope/variables/:id/bounding_box</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="variables">Variables</h2>
+<h3 id="get-scopevariablesid">GET /:scope/variables/:id</h3>
+<p>:id is the variable id.</p>
+<p>It returns an aggregate value of a variable</p>
+<p>Params:</p>
+<ul>
+<li>agg: (mandatory): aggregation function. It must be max, min, avg or sum. It can be an array.</li>
+<li>start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>bbox (optional) : [lx,ly,ux,uy]</li>
+</ul>
+<p>Response 1:</p>
+<pre><code>{
+  value: 1
+}
+</code></pre>
+
+<p>Response 2:</p>
+<pre><code>{
+  &quot;value&quot;: {
+    &quot;avg&quot;: 24.599189759944835,
+    &quot;sum&quot;: 2853875,
+  }
+}
+</code></pre>
+
+<h3 id="post-scopevariablesidnow">POST /:scope/variables/:id/now</h3>
+<p>:id is the variable id.</p>
+<p>It returns an aggregate value of a variable for the current situation.</p>
+<p>Payload 1:</p>
+<pre><code>{
+  &quot;agg&quot;: &quot;SUM&quot;,
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [lx,ly,ux,uy],
+    &quot;condition&quot;: {&quot;OR&quot;: {&quot;column1__in&quot;: [], {&quot;AND&quot;: {&quot;column2__gte&quot;: 10, &quot;column2__lte&quot;: 30}}}}
+  }
+}
+</code></pre>
+
+<p>Response 1:</p>
+<pre><code>{
+  &quot;value&quot;: 51
+}
+</code></pre>
+
+<p>Payload 2:</p>
+<pre><code>{
+  &quot;agg&quot;: [&quot;avg&quot;, &quot;sum&quot;],
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [lx,ly,ux,uy],
+    &quot;condition&quot;: {&quot;OR&quot;: {&quot;column1__in&quot;: [], {&quot;AND&quot;: {&quot;column2__gte&quot;: 10, &quot;column2__lte&quot;: 30}}}}
+  }
+}
+</code></pre>
+
+<p>Response 2:</p>
+<pre><code>{
+  &quot;value&quot;: {
+    &quot;avg&quot;: 24.599189759944835,
+    &quot;sum&quot;: 2853875,
+  }
+}
+</code></pre>
+
+<h3 id="post-scopevariablesidhistoric">POST /:scope/variables/:id/historic</h3>
+<p>:id is the variable id.</p>
+<p>It returns an aggregate value of a variable.</p>
+<p>Payload 1:</p>
+<pre><code>{
+  &quot;agg&quot;: SUM,
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;finish&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [lx,ly,ux,uy],
+    &quot;condition&quot;: {&quot;OR&quot;: {&quot;column1__in&quot;: [], {&quot;AND&quot;: {&quot;column2__gte&quot;: 10, &quot;column2__lte&quot;: 30}}}}
+  }
+}
+</code></pre>
+
+<p>Response 1:</p>
+<pre><code class="json">{
+  &quot;value&quot;: 19
+}
+</code></pre>
+
+<p>Payload 2:</p>
+<pre><code>{
+  &quot;agg&quot;: [&quot;avg&quot;, &quot;sum&quot;],
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;finish&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [lx,ly,ux,uy],
+    &quot;condition&quot;: {&quot;OR&quot;: {&quot;column1__in&quot;: [], {&quot;AND&quot;: {&quot;column2__gte&quot;: 10, &quot;column2__lte&quot;: 30}}}}
+  }
+}
+</code></pre>
+
+<p>Response 2:</p>
+<pre><code>{
+  &quot;value&quot;: {
+    &quot;avg&quot;: 24.599189759944835,
+    &quot;sum&quot;: 2853875,
+  }
+}
+</code></pre>
+
+<h3 id="post-scopevariablestimeserie">POST /:scope/variables/timeserie</h3>
+<p>It returns a time serie of a variable (or a set of variables).</p>
+<ul>
+<li>agg: (mandatory): array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.</li>
+<li>vars (mandatory): array of all variables ids.</li>
+<li>start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)</li>
+<li>bbox (optional) : [lx,ly,ux,uy]</li>
+<li>findTimes  : true | false. Default to false. If set to true and max or min aggregator are used, it returns the list of "TimeInstant" where the max or min appears.</li>
+</ul>
+<p>Payload:</p>
+<pre><code class="json">{
+  &quot;agg&quot;: [&quot;SUM&quot;,&quot;AVG&quot;,&quot;AVG&quot;,&quot;MIN&quot;],
+  &quot;vars&quot;: [&quot;varible_id_1&quot;,&quot;varible_id_2&quot;,&quot;varible_id_3&quot;,&quot;varible_id_3&quot;],
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;finish&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;step&quot;: &quot;1d&quot;
+  },
+  &quot;findTimes&quot; : true,
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [-5.11170,37.24000,-5.10818,37.24303]
+  }
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code class="json">[{
+    &quot;time&quot;: &quot;YYYY-MM-DD HH:MM&quot;,
+    &quot;data&quot;: {
+      &quot;&lt;varible_id_1&gt;&quot;: 218,
+      &quot;&lt;varible_id_2&gt;&quot;: 104,
+      &quot;&lt;varible_id_3&gt;&quot;: [
+          {
+            &quot;agg&quot;: &quot;AVG&quot;,
+            &quot;value&quot;: 34.2
+          },
+          {
+            &quot;agg&quot;: &quot;MIN&quot;,
+            &quot;value&quot;: 0.56,
+            &quot;times&quot; : [&quot;YYYY-MM-DDTHH:MM:SSZ&quot;,&quot;YYYY-MM-DDTHH:MM:SSZ&quot;,&quot;YYYY-MM-DDTHH:MM:SSZ&quot;]
+          }
+        ]
+    }
+}]
+</code></pre>
+
+<p><strong>Sample request</strong></p>
+<pre><code>POST /osuna/variables/timeserie
+</code></pre>
+
+<h3 id="post-scopevariablesid_variabledevices_group_timeserie">POST /:scope/variables/:id_variable/devices_group_timeserie</h3>
+<p>It returns a time serie of a variable grouped by devices.
+If requested (at groupagg), it also provides the aggregation of all devices.</p>
+<p>Payload:</p>
+<pre><code class="json">{
+  &quot;agg&quot;: &quot;AVG&quot;,
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;finish&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;step&quot;: &quot;1d&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [-5.11170,37.24000,-5.10818,37.24303]
+  }
+}
+</code></pre>
+
+<ul>
+<li>agg: aggregation function.</li>
+<li>start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>groupagg(optional): true|false. Default to false. Show a line for each time which represents the aggregation of all devices.</li>
+<li>step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)</li>
+<li>bbox (optional) : [lx,ly,ux,uy]</li>
+</ul>
+<p>Response:</p>
+<pre><code class="json">[{
+    &quot;time&quot;: &quot;YYYY-MM-DD HH:MM&quot;,
+    &quot;data&quot;: {
+      &quot;&lt;device_id_1&gt;&quot;: &quot;value&quot;,
+      &quot;&lt;device_id_2&gt;&quot;: &quot;value&quot;,
+      &quot;avg&quot; : &quot;value&quot;
+    }
+}]
+</code></pre>
+
+<h3 id="get-scopevariablestimeserie">GET /:scope/variables/timeserie</h3>
+<p>It returns a time serie of a variable (or a set of variables).</p>
+<p>Params:</p>
+<ul>
+<li>agg: (mandatory): separated comma array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.</li>
+<li>vars (mandatory): separated comma array of all variables ids.</li>
+<li>start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)</li>
+<li>bbox (optional) : [lx,ly,ux,uy]</li>
+</ul>
+<p>Response:</p>
+<pre><code class="json">[{
+    &quot;time&quot;: &quot;YYYY-MM-DD HH:MM&quot;,
+    &quot;data&quot;: {
+      &quot;&lt;varible_id_1&gt;&quot;: 218,
+      &quot;&lt;varible_id_2&gt;&quot;: 104,
+      &quot;&lt;varible_id_3&gt;&quot;: [
+          {
+            &quot;agg&quot;: &quot;AVG&quot;,
+            &quot;value&quot;: 34.2
+          },
+          {
+            &quot;agg&quot;: &quot;MIN&quot;,
+            &quot;value&quot;: 0.56
+          }
+        ]
+    }
+}]
+</code></pre>
+
+<p><strong>Sample request</strong></p>
+<pre><code>GET /osuna/variables/timeserie?start=2016-09-05T00:00&amp;finish=2016-09-12T00:00&amp;step=4h&amp;vars=wt_soilhumidity,wt_soilhumidity,wm_waterconsumption,mt_pluvio,wm_battery,wt_battery&amp;agg=AVG,MIN,AVG,SUM,SUM,AVG
+</code></pre>
+
+<h3 id="get-scopevariablesid_variabledevices_group_timeserie">GET /:scope/variables/:id_variable/devices_group_timeserie</h3>
+<p>It returns a time serie of a variable grouped by devices.
+If requested (at groupagg), it also provides the aggregation of all devices.</p>
+<p>Params:</p>
+<ul>
+<li>id_variable (mandatory): variable id.</li>
+<li>agg: aggregation function.</li>
+<li>start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>groupagg(optional): true|false. Default to false. Show a line for each time which represents the aggregation of all devices.</li>
+<li>step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)</li>
+<li>bbox (optional) : [lx,ly,ux,uy]</li>
+</ul>
+<p>Response:</p>
+<pre><code class="json">[{
+    &quot;time&quot;: &quot;YYYY-MM-DD HH:MM&quot;,
+    &quot;data&quot;: {
+      &quot;&lt;device_id_1&gt;&quot;: &quot;value&quot;,
+      &quot;&lt;device_id_2&gt;&quot;: &quot;value&quot;,
+      &quot;avg&quot; : &quot;value&quot;
+    }
+}]
+</code></pre>
+
+<h3 id="post-scopevariablesidhistogramcontinuousnow">POST /:scope/variables/:id/histogram/continuous/now</h3>
+<p>@TODO</p>
+<p>Payload:</p>
+<pre><code>{
+  totals: true,
+  ranges: [
+    { '&gt;=':0, '&lt;':80},
+    { '&gt;=':80, '&lt;=': 90 },
+    { '&gt;': 90 }
+  ],
+  filters: {..}
+}
+</code></pre>
+
+<p>Response (totals: true):</p>
+<pre><code>[{
+  total: 10,
+  value: 5
+ },
+ {
+   total: 20,
+   value: 15
+ },
+ {
+   total: 30,
+   value: 20
+ }]
+</code></pre>
+
+<p>Response (totals: false):</p>
+<pre><code>[{
+  value: 5
+ },
+ {
+   value: 15
+ },
+ {
+   value: 20
+ }]
+</code></pre>
+
+<h3 id="post-scopevariablesidhistogramdiscretenow">POST /:scope/variables/:id/histogram/discrete/now</h3>
+<p>@TODO</p>
+<p>Payload: Auto-guessing categories</p>
+<pre><code>{
+  ranges: 'all'
+  filters: {..}
+}
+</code></pre>
+
+<p>Payload:Fixed categories</p>
+<pre><code>{
+  ranges: ['cat1','cat2','cat3'],
+  filters: {..}
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code>[{
+    category: 'cat1',
+    value: 10,
+    total: 15
+},
+{
+    category: 'cat2',
+    value: 20,
+    total: 25
+},
+{
+    category: 'cat3',
+    value: 30,
+    total: 35
+}]
+</code></pre>
+
+<h3 id="post-scopevariablesidhistogramtimeseriecontinuous">POST /:scope/variables/:id/histogram/timeserie/continuous</h3>
+<p>Payload:</p>
+<pre><code>{
+  time: {
+    start: 'YYYY-MM-DDTHH:MM:SSZ',
+    finish: 'YYYY-MM-DDTHH:MM:SSZ',
+    step: '&lt;in seconds&gt;'
+  },
+  totals: false,
+  ranges: [
+    { '&gt;=':0, '&lt;':80},
+    { '&gt;=':80, '&lt;=': 90 },
+    { '&gt;': 90 }
+  ],
+  filters: {..},
+  time_column: 'day'  // Optional, default: 'TimeInstant'
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code>[
+  {
+    &quot;time&quot;: &quot;2016-09-07T15:00:00.000Z&quot;,
+    &quot;data&quot;: [
+      {
+        &quot;value&quot;: 0,
+        &quot;total&quot;: 0
+      },
+      {
+        &quot;value&quot;: 0,
+        &quot;total&quot;: 0
+      },
+      {
+        &quot;value&quot;: &quot;8&quot;,
+        &quot;total&quot;: &quot;8&quot;
+      }
+    ]
+  }
+]
+</code></pre>
+
+<h3 id="get-scopevariablesidouters">GET /:scope/variables/:id/outers</h3>
+<p>:id is the variable id.</p>
+<p>It returns the outers of an aggregation. It's used to build dynamic choropleth legends.</p>
+<p>Params:</p>
+<ul>
+<li>agg (mandatory): aggregation function. It must be max, min, avg or sum.</li>
+<li>start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+</ul>
+<p>Response:</p>
+<pre><code>{
+  min: 10
+  max: 100
+}
+</code></pre>
+
+<h3 id="post-scopevariablesdailyagg">POST /:scope/variables/dailyagg</h3>
+<p>It returns the dailyagg</p>
+<ul>
+<li>agg: (mandatory): array of all aggregation functions (one function per variable defined in vars). It must be max, min, avg or sum.</li>
+<li>vars (mandatory): array of all variables ids.</li>
+<li>start (mandatory): date start. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>finish (mandatory): date finish. Format is 'YYYY-MM-DD HH:MM'. Date time is UTC.</li>
+<li>step (optional): time resolution. Values: 1h, 2h, 4h, 1d (default: 1d)</li>
+<li>bbox (optional) : [lx,ly,ux,uy]</li>
+<li>findTimes  : true | false. Default to false. If set to true and max or min aggregator are used, it returns the list of "TimeInstant" where the max or min appears.</li>
+</ul>
+<p>Payload:</p>
+<pre><code class="json">{
+  &quot;agg&quot;: [&quot;SUM&quot;,&quot;MAX&quot;,&quot;AVG&quot;,&quot;MIN&quot;],
+  &quot;vars&quot;: [&quot;varible_id_1&quot;,&quot;varible_id_2&quot;,&quot;varible_id_3&quot;,&quot;varible_id_3&quot;],
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;finish&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;step&quot;: &quot;1d&quot;
+  },
+  &quot;findTimes&quot; : true,
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [-5.11170,37.24000,-5.10818,37.24303]
+  }
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code class="json">[{
+    &quot;time&quot;: &quot;&lt;seconds from 00:00 UTC&gt;&quot;,
+    &quot;data&quot;: {
+      &quot;&lt;varible_id_1&gt;&quot;: 33,
+      &quot;&lt;varible_id_2&gt;&quot;: {
+        &quot;value&quot; : 35,
+        &quot;times&quot; : [&quot;YYYY-MM-DD&quot;,&quot;YYYY-MM-DD&quot;,&quot;YYYY-MM-DD&quot;]
+      },
+      &quot;&lt;varible_id_3&gt;&quot;: [
+          {
+            &quot;agg&quot;: &quot;AVG&quot;,
+            &quot;value&quot;: 34.2
+          },
+          {
+            &quot;agg&quot;: &quot;MIN&quot;,
+            &quot;value&quot;: 0.56,
+            &quot;times&quot; : [&quot;YYYY-MM-DDTHH:MM:SSZ&quot;,&quot;YYYY-MM-DDTHH:MM:SSZ&quot;,&quot;YYYY-MM-DDTHH:MM:SSZ&quot;]
+          }
+        ]
+    }
+}]
+</code></pre>
+
+<h3 id="post-scopevariablesrankingnow">POST /:scope/variables/ranking/now</h3>
+<p>It returns the current values of the requested variables ranked by a variable.</p>
+<ul>
+<li>vars: (mandatory): array of all variables ids.</li>
+<li>var_order (mandatory): variable id for ordering.</li>
+<li>order (optional): 'asc' or 'desc', default 'desc'.</li>
+<li>limit (optional): an intenger for limiting the query result, default without limit.</li>
+<li>bbox (optional): [lx,ly,ux,uy]</li>
+</ul>
+<p>Payload:</p>
+<pre><code class="json">{
+  &quot;vars&quot;: [
+    &quot;parking.offstreet.name&quot;,
+    &quot;parking.offstreet.availablespotnumber&quot;,
+    &quot;parking.offstreet.category&quot;
+  ],
+  &quot;var_order&quot;: &quot;parking.offstreet.availablespotnumber&quot;,
+  &quot;order&quot;: &quot;desc&quot;,
+  &quot;limit&quot;: 5,
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [lx, ly, ux, uy]
+  }
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code class="json">[
+  {
+    &quot;availablespotnumber&quot;: 266,
+    &quot;category&quot;: [
+      &quot;public&quot;
+    ],
+    &quot;name&quot;: &quot;Polígono Industrial Alcobendas - Parking 03&quot;
+  },
+  {
+    &quot;availablespotnumber&quot;: 218,
+    &quot;category&quot;: [
+      &quot;forCustomers&quot;
+    ],
+    &quot;name&quot;: &quot;Las Tablas - Parking 03&quot;
+  },
+  {
+    &quot;availablespotnumber&quot;: 166,
+    &quot;category&quot;: [
+      &quot;forCustomers&quot;
+    ],
+    &quot;name&quot;: &quot;Las Tablas - Parking 01&quot;
+  },
+  {
+    &quot;availablespotnumber&quot;: 122,
+    &quot;category&quot;: [
+      &quot;forCustomers&quot;
+    ],
+    &quot;name&quot;: &quot;Las Tablas - Parking 02&quot;
+  },
+  {
+    &quot;availablespotnumber&quot;: 116,
+    &quot;category&quot;: [
+      &quot;public&quot;
+    ],
+    &quot;name&quot;: &quot;Parque Empresarial Moraleja - Parking 02&quot;
+  }
+]
+</code></pre>
+
+<h3 id="post-scopevariablesidweekserie">POST /:scope/variables/:id/weekserie</h3>
+<p>Payload:</p>
+<pre><code class="json">{
+  &quot;agg&quot;: &quot;AVG&quot;,
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;,
+    &quot;finish&quot;: &quot;YYYY-MM-DDTHH:MM:SSZ&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [lx, ly, ux, uy]
+  }
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code class="json">[
+  {
+    &quot;day&quot;: &quot;Monday&quot;,
+    &quot;data&quot;: [&lt;data at 00:00UTC&gt;, ..., &lt;data at 23:00UTC&gt;]
+  },
+  {
+    &quot;day&quot;: &quot;Tuesday&quot;,
+    &quot;data&quot;: [&lt;data at 00:00UTC&gt;, ..., &lt;data at 23:00UTC&gt;]
+  },
+  {
+    &quot;day&quot;: &quot;Wednesday&quot;,
+    &quot;data&quot;: [&lt;data at 00:00UTC&gt;, ..., &lt;data at 23:00UTC&gt;]
+  }
+]
+</code></pre>
+
+<h3 id="post-scopevariablesidhistogramdiscretegrouped">POST /:scope/variables/:id/histogram/discrete/grouped</h3>
+<p>It counts the rows of a table grouped by a column.</p>
+<p>Payload 1:</p>
+<pre><code class="json">{
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;2000-01-01T00:00:00Z&quot;,
+    &quot;finish&quot;: &quot;2999-01-01T00:00:00Z&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],
+    &quot;order&quot;: &quot;asc&quot;,  // Optional, default DESC
+    &quot;limit&quot;: 10,  // Optional, default without limit
+    &quot;perc&quot;: false,  // Optional, default false
+    &quot;condition&quot;: {
+      &quot;AND&quot;: {
+        &quot;user_country__in&quot;: [&quot;Croatia&quot;],
+        &quot;week_day__in&quot;: [&quot;5&quot;, &quot;6&quot;, &quot;7&quot;]
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>Response 1:</p>
+<pre><code class="json">[
+  {
+    &quot;category&quot;: &quot;Split-Dalmatia&quot;,
+    &quot;total&quot;: 4
+  },
+  {
+    &quot;category&quot;: &quot;Zagreb&quot;,
+    &quot;total&quot;: 2
+  }
+]
+</code></pre>
+
+<p>Payload 2:</p>
+<pre><code class="json">{
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;2000-01-01T00:00:00Z&quot;,
+    &quot;finish&quot;: &quot;2999-01-01T00:00:00Z&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],
+    &quot;order&quot;: &quot;desc&quot;,  // Optional, default DESC
+    &quot;limit&quot;: 2,  // Optional, default without limit
+    &quot;perc&quot;: true,  // Optional, default false
+    &quot;condition&quot;: {
+      &quot;AND&quot;: {
+        &quot;user_country__in&quot;: [&quot;Spain&quot;],
+        &quot;week_day__in&quot;: [&quot;5&quot;, &quot;6&quot;, &quot;7&quot;]
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>Response 2:</p>
+<pre><code class="json">[
+  {
+    &quot;category&quot;: &quot;Madrid&quot;,
+    &quot;total&quot;: 80.3197908286404
+  },
+  {
+    &quot;category&quot;: &quot;Granada&quot;,
+    &quot;total&quot;: 19.680209171359614
+  }
+]
+</code></pre>
+
+<h3 id="post-scopevariablesidunique">POST /:scope/variables/:id/unique</h3>
+<p>It returns the unique values of a variable. Also, you can filter it by another column with the <code>filters</code> key in the payload.</p>
+<p>Payload:</p>
+<pre><code class="json">{
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;2000-01-01T00:00:00Z&quot;,
+    &quot;finish&quot;: &quot;2999-01-01T00:00:00Z&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;bbox&quot;: [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],
+    &quot;condition&quot;: {
+      &quot;AND&quot;: {
+        &quot;user_country__in&quot;: [&quot;Croatia&quot;],
+        &quot;week_day__in&quot;: [&quot;5&quot;, &quot;6&quot;, &quot;7&quot;]
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code class="json">[
+  {
+    &quot;value&quot;: &quot;Split-Dalmatia&quot;
+  },
+  {
+    &quot;value&quot;: &quot;Zagreb&quot;
+  }
+]
+</code></pre>
+
+<h3 id="post-scopevariablesidbounding_box">POST /:scope/variables/:id/bounding_box</h3>
+<p>It returns the returns bounding box of a variable. Also, you can filter it by another column with the <code>filters</code> key in the payload.</p>
+<p>Payload:</p>
+<pre><code class="json">{
+  &quot;time&quot;: {
+    &quot;start&quot;: &quot;2000-01-01T00:00:00Z&quot;,
+    &quot;finish&quot;: &quot;2999-01-01T00:00:00Z&quot;
+  },
+  &quot;filters&quot;: {
+    &quot;condition&quot;: {
+      &quot;AND&quot;: {
+        &quot;user_country__in&quot;: [&quot;Spain&quot;],
+        &quot;week_day__in&quot;: [&quot;5&quot;, &quot;6&quot;, &quot;7&quot;]
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>Response:</p>
+<pre><code class="json">{
+  &quot;value&quot;: [
+    -16.26,
+    28.463,
+    12.402,
+    47.86
+  ]
+}
+</code></pre>
+
+<p>Response (when there is no data for calculating the bounding box):</p>
+<pre><code class="json">{
+  &quot;value&quot;: null
+}
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/require.js"></script>
+        <script src="../../search/search.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </body>
+</html>
