@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,43 +13,49 @@
         
     <url>
      <loc>/reference/metadata/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/scopes/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/entities/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/variables/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/devices/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/reference/maps/</loc>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/users/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/logs/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -64,7 +70,7 @@
     
     <url>
      <loc>/sockets/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -72,7 +78,7 @@
     
     <url>
      <loc>/database/</loc>
-     <lastmod>2017-12-28</lastmod>
+     <lastmod>2017-12-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

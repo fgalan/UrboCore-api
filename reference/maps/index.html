@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Users - URBO API</title>
+        <title>Maps - URBO API</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -72,12 +72,12 @@
     <a href="../devices/">Devices</a>
 </li>
                             
-<li >
-    <a href="../maps/">Maps</a>
+<li class="active">
+    <a href="./">Maps</a>
 </li>
                             
-<li class="active">
-    <a href="./">Users</a>
+<li >
+    <a href="../users/">Users</a>
 </li>
                             
 <li >
@@ -110,12 +110,12 @@
                     </a>
                 </li>
                     <li >
-                        <a rel="next" href="../maps/">
+                        <a rel="next" href="../devices/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../logs/">
+                        <a rel="prev" href="../users/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -127,102 +127,94 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#users">Users</a></li>
-            <li><a href="#get-users">GET /users</a></li>
-            <li><a href="#post-users">POST /users</a></li>
-            <li><a href="#get-usersid">GET /users/:id</a></li>
-            <li><a href="#put-usersid">PUT /users/:id</a></li>
-            <li><a href="#delete-usersid">DELETE /users/:id</a></li>
+        <li class="main active"><a href="#maps">Maps</a></li>
+            <li><a href="#get-scopemapsentity">GET /:scope/maps/:entity</a></li>
+            <li><a href="#post-scopemapsentitynow">POST /:scope/maps/:entity/now</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h2 id="users">Users</h2>
-<h3 id="get-users">GET /users</h3>
-<p>It returns the list of users.</p>
-<p>Sample response:</p>
-<pre><code class="json">[{
-  id: 1,
-  name: &quot;John&quot;,
-  surname : &quot;Smith&quot;,
-  email: &quot;admin@domain.gs&quot;,
-  superadmin: false,
-  scopes : [&quot;s1&quot;,&quot;s2&quot;,&quot;s3&quot;]
-  }]
+<h2 id="maps">Maps</h2>
+<h3 id="get-scopemapsentity">GET /:scope/maps/:entity</h3>
+<p>It returns all entities of a type as GeoJSON <code>FeatureCollection</code>.</p>
+<p>Path's params:
+  - scope (mandatory)
+  - entity (mandatory)</p>
+<p>Example request URL:</p>
+<pre><code class="text">/aljarafe/maps/aq_cons.sector
 </code></pre>
 
-<p>Notes:
-- Only superadmin can call this method</p>
-<h3 id="post-users">POST /users</h3>
-<p>It creates a new user</p>
+<p>Example response:</p>
 <pre><code class="json">{
-  name: &quot;John&quot;,
-  surname: &quot;Smith&quot;,
-  email: &quot;admin@domain.gs&quot;,
-  password: &quot;test1234&quot;,
-  superadmin : false,
-  scopes : [&quot;s1&quot;,&quot;s2&quot;,&quot;s3&quot;]
+  &quot;type&quot;: &quot;FeatureCollection&quot;,
+  &quot;features&quot;: [
+    {
+      &quot;type&quot;: &quot;Feature&quot;,
+      &quot;geometry&quot;: {
+        &quot;type&quot;: &quot;Point&quot;,
+        &quot;coordinates&quot;: [
+          -6.05800766117674,
+          37.353173399743
+        ]
+      },
+      &quot;properties&quot;: {
+        &quot;id_entity&quot;: &quot;sector_id:16_industrial&quot;,
+        &quot;TimeInstant&quot;: &quot;2018-01-23T23:55:00.000Z&quot;,
+        &quot;flow&quot;: 255.673644341031
+      }
+    }
+  ]
 }
 </code></pre>
 
-<p>If error it returns a error status code and a message:</p>
-<pre><code class="json">[
-  {
-    &quot;param&quot;: &quot;email&quot;,
-    &quot;msg&quot;: &quot;required&quot;
-  }
-]
+<h3 id="post-scopemapsentitynow">POST /:scope/maps/:entity/now</h3>
+<p><strong>Note</strong>: Like <code>/:scope/maps/:entity/now</code>, but with a POST body.
+It returns all entities of a type as GeoJSON <code>FeatureCollection</code>.</p>
+<p>Path's params:
+  - scope (mandatory)
+  - entity (mandatory)</p>
+<p>Body's params:
+  - filters.condition (mandatory, can be empty): Urbo's filter conditions
+  - filters.bbox (optional)</p>
+<p>Example request URL:</p>
+<pre><code class="text">/aljarafe/maps/aq_cons.sector/now
 </code></pre>
 
-<p>if ok it returns the user id:</p>
+<p>Example body:</p>
 <pre><code class="json">{
-  id: 1
+  &quot;filters&quot;:
+    &quot;bbox&quot;: [321.328125, 81.0932138526084, -284.765625000000069, -54.1624339680678],
+    &quot;condition&quot;: {
+      &quot;AND&quot;: {
+        &quot;property_0__in&quot;: [&quot;value_a&quot;],
+        &quot;property_1__in&quot;: [&quot;value_b&quot;, &quot;value_c&quot;, &quot;value_c&quot;]
+      }
+    }
 }
 </code></pre>
 
-<p>Notes:
-- Only superadmin can call this method</p>
-<h3 id="get-usersid">GET /users/:id</h3>
-<p>It returns the info of an user:</p>
+<p>Example response:</p>
 <pre><code class="json">{
-  id: 1,
-  name: &quot;John&quot;,
-  surname: &quot;Smith&quot;,
-  email: &quot;admin@domain.gs&quot;,
-  superadmin: false,
-  scopes : [&quot;s1&quot;,&quot;s2&quot;,&quot;s3&quot;]
+  &quot;type&quot;: &quot;FeatureCollection&quot;,
+  &quot;features&quot;: [
+    {
+      &quot;type&quot;: &quot;Feature&quot;,
+      &quot;geometry&quot;: {
+        &quot;type&quot;: &quot;Point&quot;,
+        &quot;coordinates&quot;: [
+          -6.05800766117674,
+          37.353173399743
+        ]
+      },
+      &quot;properties&quot;: {
+        &quot;id_entity&quot;: &quot;sector_id:16_industrial&quot;,
+        &quot;TimeInstant&quot;: &quot;2018-01-23T23:55:00.000Z&quot;,
+        &quot;flow&quot;: 255.673644341031
+      }
+    }
+  ]
 }
-</code></pre>
-
-<p>Notes:
-- Only superadmin can get info of other users.
-- A non-superadmin user can only get the info of himself.</p>
-<h3 id="put-usersid">PUT /users/:id</h3>
-<p>It updates the user info</p>
-<pre><code class="json">{
-  name: &quot;John&quot;,
-  surname: &quot;Smith&quot;,
-  email: &quot;admin@domain.gs&quot;,
-  superadmin: false,
-  scopes : [&quot;s1&quot;,&quot;s2&quot;,&quot;s3&quot;],
-  old_password: &quot;test1234&quot;,
-  password: &quot;awesomepassword&quot;
-}
-</code></pre>
-
-<p>Notes:
-- Only admin can change other users data.
-- password: if the user who launches the request is not an admin user, he needs to supply the old_password.</p>
-<h3 id="delete-usersid">DELETE /users/:id</h3>
-<p>It deletes an user.</p>
-<p>Sample response</p>
-<pre><code class="json">{
-  status : &quot;ok&quot;
-}
-</code></pre>
-
-<p>Notes:
-- Only superadmin can use this method.</p></div>
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
